@@ -42,7 +42,6 @@ class Questions:
                      answers.append ([answer, correct])
 
             print id, textquestion, answers
-         exit()
 
 q=Questions()
 
