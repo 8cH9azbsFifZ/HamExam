@@ -2,14 +2,14 @@ import questions, statistic
 
 class Framework:
    def AskQuestion(self):
-      qid = "TB305" 
+      qid = str("TB305" )
       self.q.AskQuestion (qid)
-      f.id = qid
-      f.question = self.q.question
-      f.answera = self.q.answera
-      f.answerb = self.q.answerb
-      f.answerc = self.q.answerc
-      f.answerd = self.q.answerd
+      self.id = qid
+      self.question = self.q.question
+      self.answera = self.q.answera
+      self.answerb = self.q.answerb
+      self.answerc = self.q.answerc
+      self.answerd = self.q.answerd
 
    def EvalQuestion(self, answer):
       if self.q.correct == answer:
