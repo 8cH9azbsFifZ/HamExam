@@ -75,32 +75,20 @@ class MyHandler(BaseHTTPRequestHandler):
       }
 
    def AFU(self):
-      if self.path.endswith("a.afu"):
-         if q.correct == "a":
-            self.wfile.write("RICHTIG!")
-         else:
-            self.wfile.write("FALSCH!")
-      elif self.path.endswith("b.afu"):
-         if q.correct == "b":
-            self.wfile.write("RICHTIG!")
-         else:
-            self.wfile.write("FALSCH!")
-      elif self.path.endswith("c.afu"):
-         if q.correct == "c":
-            self.wfile.write("RICHTIG!")
-         else:
-            self.wfile.write("FALSCH!")
-      elif self.path.endswith("d.afu"):
-         if q.correct == "d":
-            self.wfile.write("RICHTIG!")
-         else:
-            self.wfile.write("FALSCH!")
+      if self.path.endswith("a.afu") or self.path.endswith("b.afu") or self.path.endswith("c.afu") or self.path.endswith("d.afu"):
+         answer = (ss.split("/")[-1]).replace(".afu","")
+         f.EvalQuestion (answer)
+         if not f.correct:
+            self.WrongAnswer()
       elif self.path.endswith("hint.afu"):
          print "FIXME"
       else:
          print "FIXME"
 
       self.StartDisplay()
+
+   def WrongAnswer(self):
+      self.wfile.write("wrong")
 
    def StartDisplay(self):
       self.send_response(200)
@@ -111,7 +99,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
       self.wfile.write("<html><head><base href="+self.base+"/Questions/></head><body>")
 
-      f.AskQuestion("TB305")
+      f.AskQuestion()
      
       self.wfile.write("<div class=id>"+f.id+"</div>")
 

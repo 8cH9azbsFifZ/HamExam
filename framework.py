@@ -3,16 +3,16 @@ import questions, statistic
 class Framework:
    def AskQuestion(self):
       qid = "TB305" 
-      q.AskQuestion (qid)
+      self.q.AskQuestion (qid)
       f.id = qid
-      f.question = q.question
-      f.answera = q.answera
-      f.answerb = q.answerb
-      f.answerc = q.answerc
-      f.answerd = q.answerd
+      f.question = self.q.question
+      f.answera = self.q.answera
+      f.answerb = self.q.answerb
+      f.answerc = self.q.answerc
+      f.answerd = self.q.answerd
 
    def EvalQuestion(self, answer):
-      if q.correct == answer:
+      if self.q.correct == answer:
          c = True
       else:
          c = False
