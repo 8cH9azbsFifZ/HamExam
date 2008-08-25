@@ -2,10 +2,14 @@
 import sys, string
 from xml.dom import minidom, Node
 import os
+import datetime
 
 class Statistic:
    def IncreaseCounter(self, id, how):
       return
+
+   def Timestamp(self):
+      return str(datetime.datetime.today().isoformat()).split(".")[0]
 
    def __init__(self,filename="DL-A-2007.stat.xml"):
       self.filename=filename
