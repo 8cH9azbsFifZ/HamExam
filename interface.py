@@ -135,10 +135,10 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("</div>")
 
       self.wfile.write("<form name=abc action=\"http://127.0.0.1:8080\" method=get><div class=answer><input type=hidden name=ANSWER/>")
-      self.wfile.write("<a href=\"javascript:document.gtd.ACTION.value='ADD';document.gtd.submit();\" class=button>A</a>"+q.answera+"<br>")
-      self.wfile.write(q.answerb)
-      self.wfile.write(q.answerc)
-      self.wfile.write(q.answerd)
+      self.wfile.write("<a href=\"javascript:document.gtd.ACTION.value='a';document.gtd.submit();\" class=button>A</a>"+q.answera+"<br>")
+      self.wfile.write("<a href=\"javascript:document.gtd.ACTION.value='b';document.gtd.submit();\" class=button>B</a>"+q.answerb+"<br>")
+      self.wfile.write("<a href=\"javascript:document.gtd.ACTION.value='c';document.gtd.submit();\" class=button>C</a>"+q.answerc+"<br>")
+      self.wfile.write("<a href=\"javascript:document.gtd.ACTION.value='d';document.gtd.submit();\" class=button>D</a>"+q.answerd+"<br>")
       self.wfile.write("</div></form>")
 
       self.wfile.write("</body></html>")
