@@ -12,6 +12,8 @@ class MyHandler(BaseHTTPRequestHandler):
       self.end_headers()
 
       self.wfile.write("abc")
+      self.q.AskQuestion("TB305")
+      self.wfile.write(self.q.question)
 
 
 
