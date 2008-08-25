@@ -126,7 +126,10 @@ class MyHandler(BaseHTTPRequestHandler):
       self.send_response(200)
       self.send_header('Content-type',	'text/html')
       self.end_headers()
-      self.wfile.write("<html><head><base href=\"http://127.0.0.1:8080/Questions/\"></head><body>")
+
+      self.base="http://127.0.0.1:8080"
+
+      self.wfile.write("<html><head><base href="+self.base+"/Questions/></head><body>")
 
       q.AskQuestion("TB305")
       
@@ -134,12 +137,15 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write(q.question)
       self.wfile.write("</div>")
 
-      self.wfile.write("<form name=abc action=\"http://127.0.0.1:8080\" method=get><div class=answer><input type=hidden name=ANSWER/>")
-      self.wfile.write("<a href=\"javascript:document.gtd.ACTION.value='a';document.gtd.submit();\" class=button>A</a>"+q.answera+"<br>")
-      self.wfile.write("<a href=\"javascript:document.gtd.ACTION.value='b';document.gtd.submit();\" class=button>B</a>"+q.answerb+"<br>")
-      self.wfile.write("<a href=\"javascript:document.gtd.ACTION.value='c';document.gtd.submit();\" class=button>C</a>"+q.answerc+"<br>")
-      self.wfile.write("<a href=\"javascript:document.gtd.ACTION.value='d';document.gtd.submit();\" class=button>D</a>"+q.answerd+"<br>")
-      self.wfile.write("</div></form>")
+      self.wfile.write("<div class=answer>")
+      self.wfile.write("<a href="+self.base+"/a.afu class=button>A</a>"+q.answera+"<br>")
+      self.wfile.write("<a href="+self.base+"/b.afu class=button>B</a>"+q.answerb+"<br>")
+      self.wfile.write("<a href="+self.base+"/c.afu class=button>C</a>"+q.answerc+"<br>")
+      self.wfile.write("<a href="+self.base+"/d.afu class=button>D</a>"+q.answerd+"<br>")
+      self.wfile.write("</div>")
+
+      self.wfile.write("<div class=hint>")
+      self.wfile.write("<a href="+self.base+"/hint.afu>Hinweis</a>")
 
       self.wfile.write("</body></html>")
 
