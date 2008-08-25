@@ -12,12 +12,24 @@ class Questions:
       self.version = self.root.getAttribute ("version")
       self.name = self.root.getAttribute ("name")
 
+      chapters=[]
       for c in self.root.childNodes:
          if c.nodeType == Node.ELEMENT_NODE:
             if c.nodeName == "chapter":
-               id = c.getAttribute("id")
-               name = c.getAttribute("name")
-               print id,name.encode("utf8")
+               id1 = c.getAttribute("id")
+               name1 = c.getAttribute("name")
+         for d in c.childNodes:
+            if d.nodeType == Node.ELEMENT_NODE:
+               if d.nodeName == "chapter":
+                  id2 = d.getAttribute("id")
+                  name2 = d.getAttribute("name")
+            for e in d.childNodes:
+               if e.nodeType == Node.ELEMENT_NODE:
+                  if e.nodeName == "chapter":
+                     id3 = e.getAttribute("id")
+                     name3 = e.getAttribute("name")
+
+
 
       def GetQuestions():      
          for q in self.file.getElementsByTagName("question"):
