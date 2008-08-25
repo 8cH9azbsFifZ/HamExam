@@ -58,8 +58,8 @@ class Questions:
       return
 
    def AskQuestion(self,id):
-      q = self.questions[0].searchsorted (id)
-      print q[1]
+      #q = self.questions[0].searchsorted (id)
+      print "Q:"#,q[1]
 
    def __init__(self,filename="Questions/questions.xml"):
       self.filename=filename
