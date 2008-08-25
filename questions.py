@@ -69,4 +69,4 @@ class Questions:
       self.GetQuestions()
 
 q=Questions()
-print q.AskQuestion["TA103"]
+q.AskQuestion["TA103"]
