@@ -4,7 +4,9 @@ from xml.dom import minidom, Node
 import os
 
 class Questions:
-   def GetQuestions():      
+   def GetQuestions(self):   
+      self.questions = []
+
       for q in self.file.getElementsByTagName("question"):
          id = q.getAttribute ("id")
          
@@ -22,11 +24,19 @@ class Questions:
                if c.nodeName == "textquestion":
                   textquestion = strContent
                elif c.nodeName == "textanswer":
-                  correct = c.getAttribute("correct")
+                  if c.getAttribute("correct") == "true":
+                     correct = True
+                  else:
+                     correct = False
                   answer = content
                   answers.append ([answer, correct])
 
-   def GetChapters():
+         self.questions.append ([id, textquestion,answers])
+
+   def GetHints(self):
+      return
+
+   def GetChapters(self):
       chapters=[]
       for c in self.root.childNodes:
          if c.nodeType == Node.ELEMENT_NODE:
@@ -44,13 +54,19 @@ class Questions:
                      id3 = e.getAttribute("id")
                      name3 = e.getAttribute("name")
 
-   def GetBasicProperties():
+   def GetBasicProperties(self):
       return
+
+   def AskQuestion(self,id):
+      q = self.questions[0].searchsorted (id)
+      print q[1]
 
    def __init__(self,filename="Questions/questions.xml"):
       self.filename=filename
       self.file = minidom.parse (self.filename)
       self.root = self.file.documentElement
 
-q=Questions()
+      self.GetQuestions()
 
+q=Questions()
+print q.AskQuestion["TA103"]
