@@ -63,10 +63,10 @@ class Questions:
             break
       self.question = str(q[1])
       self.correct = "a"
-      self.answera = "A:",q[2][0][0][0]
-      self.answera = "B:",q[2][1][0][0]
-      self.answera = "C:",q[2][2][0][0]
-      self.answera = "D:",q[2][3][0][0]
+      self.answera = q[2][0][0][0]
+      self.answerb = q[2][1][0][0]
+      self.answerc = q[2][2][0][0]
+      self.answerd = q[2][3][0][0]
 
    def __init__(self,filename="Questions/questions.xml"):
       self.filename=filename

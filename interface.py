@@ -130,11 +130,16 @@ class MyHandler(BaseHTTPRequestHandler):
 
       q.AskQuestion("TB305")
       
+      self.wfile.write("<div class=question>")
       self.wfile.write(q.question)
-      self.wfile.write(q.answera)
+      self.wfile.write("</div>")
+
+      self.wfile.write("<form name=abc action=\"http://127.0.0.1:8080\" method=get><div class=answer><input type=hidden name=ANSWER/>")
+      self.wfile.write("<a href=\"javascript:document.gtd.ACTION.value='ADD';document.gtd.submit();\" class=button>A</a>"+q.answera+"<br>")
       self.wfile.write(q.answerb)
       self.wfile.write(q.answerc)
       self.wfile.write(q.answerd)
+      self.wfile.write("</div></form>")
 
       self.wfile.write("</body></html>")
 
