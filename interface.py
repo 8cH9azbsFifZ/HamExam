@@ -76,9 +76,8 @@ class MyHandler(BaseHTTPRequestHandler):
 
    def AFU(self):
       if self.path.endswith("a.afu") or self.path.endswith("b.afu") or self.path.endswith("c.afu") or self.path.endswith("d.afu"):
-         answer = (ss.split("/")[-1]).replace(".afu","")
-         f.EvalQuestion (answer)
-         if not f.correct:
+         answer = (self.path.split("/")[-1]).replace(".afu","")
+         if not f.EvalQuestion (answer):
             self.WrongAnswer()
       elif self.path.endswith("hint.afu"):
          print "FIXME"
