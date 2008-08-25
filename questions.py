@@ -62,6 +62,7 @@ class Questions:
          if q[0] == id:
             break
       print "Q:",q[1]
+      self.correct = "a"
       print "A:",q[2][0][0][0]
       print "B:",q[2][1][0][0]
       print "C:",q[2][2][0][0]
@@ -77,4 +78,4 @@ class Questions:
 
 q = Questions()
 
-q.AskQuestion("TA103")
+q.AskQuestion("TB305")
