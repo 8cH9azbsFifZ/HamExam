@@ -61,8 +61,10 @@ class Questions:
       for q in self.questions:
          if q[0] == id:
             break
+
+      self.id = id
       self.question = str(q[1])
-      self.correct = "a"
+      self.correct = "a" #FIXME
       self.answera = q[2][0][0][0]
       self.answerb = q[2][1][0][0]
       self.answerc = q[2][2][0][0]

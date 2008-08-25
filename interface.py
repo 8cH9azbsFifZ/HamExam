@@ -122,7 +122,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
  
 
-   def Good(self):
+   def StartDisplay(self):
       self.send_response(200)
       self.send_header('Content-type',	'text/html')
       self.end_headers()
@@ -132,7 +132,9 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("<html><head><base href="+self.base+"/Questions/></head><body>")
 
       q.AskQuestion("TB305")
-      
+     
+      self.wfile.write("<div class=id>"+q.id+"</div>")
+
       self.wfile.write("<div class=question>")
       self.wfile.write(q.question)
       self.wfile.write("</div>")
