@@ -4,7 +4,7 @@ from os import curdir, sep
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import posixpath, urllib, os
 
-import questions, statistic
+import framework
 
 class MyHandler(BaseHTTPRequestHandler):
    def do_GET(self):
@@ -111,19 +111,19 @@ class MyHandler(BaseHTTPRequestHandler):
 
       self.wfile.write("<html><head><base href="+self.base+"/Questions/></head><body>")
 
-      q.AskQuestion("TB305")
+      f.AskQuestion("TB305")
      
-      self.wfile.write("<div class=id>"+q.id+"</div>")
+      self.wfile.write("<div class=id>"+f.id+"</div>")
 
       self.wfile.write("<div class=question>")
-      self.wfile.write(q.question)
+      self.wfile.write(f.question)
       self.wfile.write("</div>")
 
       self.wfile.write("<div class=answer>")
-      self.wfile.write("<a href="+self.base+"/a.afu class=button>A</a>"+q.answera+"<br>")
-      self.wfile.write("<a href="+self.base+"/b.afu class=button>B</a>"+q.answerb+"<br>")
-      self.wfile.write("<a href="+self.base+"/c.afu class=button>C</a>"+q.answerc+"<br>")
-      self.wfile.write("<a href="+self.base+"/d.afu class=button>D</a>"+q.answerd+"<br>")
+      self.wfile.write("<a href="+self.base+"/a.afu class=button>A</a>"+f.answera+"<br>")
+      self.wfile.write("<a href="+self.base+"/b.afu class=button>B</a>"+f.answerb+"<br>")
+      self.wfile.write("<a href="+self.base+"/c.afu class=button>C</a>"+f.answerc+"<br>")
+      self.wfile.write("<a href="+self.base+"/d.afu class=button>D</a>"+f.answerd+"<br>")
       self.wfile.write("</div>")
 
       self.wfile.write("<div class=hint>")
@@ -148,8 +148,8 @@ class MyHandler(BaseHTTPRequestHandler):
          
 def main():
    try:
-      global q 
-      q = questions.Questions()
+      global f 
+      f = framework.Framework()
       server = HTTPServer(('', 8080), MyHandler)
       print 'started httpserver...'
       server.serve_forever()
