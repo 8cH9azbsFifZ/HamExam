@@ -36,6 +36,6 @@ class Statistic:
       print id[0],c[0],cs[0],ws[0],w[0],answers
 
 
-s=Statistic()
-print s.date,s.version,s.name
+#s=Statistic()
+#print s.date,s.version,s.name
 
