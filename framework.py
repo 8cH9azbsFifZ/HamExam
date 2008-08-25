@@ -16,6 +16,9 @@ class Framework:
          c = True
       else:
          c = False
+
+      self.s.IncreaseCounter (self.id, c)
+
       return c
 
    def FindNewQuestion(self):

@@ -4,8 +4,11 @@ from xml.dom import minidom, Node
 import os
 
 class Statistic:
-   def __init__(self):
-      self.filename="DL-A-2007.stat.xml"
+   def IncreaseCounter(self, id, how):
+      return
+
+   def __init__(self,filename="DL-A-2007.stat.xml"):
+      self.filename=filename
       self.stat = minidom.parse (self.filename)
       self.root = self.stat.documentElement
       self.date = self.root.getAttribute ("date")
@@ -35,7 +38,4 @@ class Statistic:
                
       print id[0],c[0],cs[0],ws[0],w[0],answers
 
-
-#s=Statistic()
-#print s.date,s.version,s.name
 
