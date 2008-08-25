@@ -9,7 +9,7 @@ import questions, statistic
 class MyHandler(BaseHTTPRequestHandler):
    def do_GET(self):
       if self.path.endswith(".afu"):
-         self.Good()
+         self.AFU()
       else:
          f = self.send_head()
          if f:
@@ -120,7 +120,9 @@ class MyHandler(BaseHTTPRequestHandler):
       '.jpeg': 'image/jpeg',
       }
 
- 
+   def AFU(self):
+      print "FIXME"
+      exit()
 
    def StartDisplay(self):
       self.send_response(200)
