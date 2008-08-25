@@ -17,22 +17,11 @@ class MyHandler(BaseHTTPRequestHandler):
             f.close()
          
    def do_HEAD(self):
-     """Serve a HEAD request."""
      f = self.send_head()
      if f:
          f.close()
 
    def send_head(self):
-      """Common code for GET and HEAD commands.
-
-      This sends the response code and MIME headers.
-
-      Return value is either a file object (which has to be copied
-      to the outputfile by the caller unless the command was HEAD,
-      and must be closed by the caller under all circumstances), or
-      None, in which case the caller has nothing further to do.
-
-      """
       path = self.translate_path(self.path)
       if os.path.isdir(path):
          self.send_error(403, "Directory listing not supported")
@@ -48,13 +37,6 @@ class MyHandler(BaseHTTPRequestHandler):
       return f
 
    def translate_path(self, path):
-      """Translate a /-separated PATH to the local filename syntax.
-
-      Components that mean special things to the local file system
-      (e.g. drive or directory names) are ignored.  (XXX They should
-      probably be diagnosed.)
-
-      """
       path = posixpath.normpath(urllib.unquote(path))
       words = string.splitfields(path, '/')
       words = filter(None, words)
@@ -67,20 +49,6 @@ class MyHandler(BaseHTTPRequestHandler):
       return path
 
    def copyfile(self, source, outputfile):
-      """Copy all data between two file objects.
-
-      The SOURCE argument is a file object open for reading
-      (or anything with a read() method) and the DESTINATION
-      argument is a file object open for writing (or
-      anything with a write() method).
-
-      The only reason for overriding this would be to change
-      the block size or perhaps to replace newlines by CRLF
-      -- note however that this the default server uses this
-      to copy binary data as well.
-
-      """
-
       BLOCKSIZE = 8192
       while 1:
          data = source.read(BLOCKSIZE)
@@ -88,20 +56,6 @@ class MyHandler(BaseHTTPRequestHandler):
          outputfile.write(data)
 
    def guess_type(self, path):
-      """Guess the type of a file.
-
-      Argument is a PATH (a filename).
-
-      Return value is a string of the form type/subtype,
-      usable for a MIME Content-type header.
-
-      The default implementation looks the file's extension
-      up in the table self.extensions_map, using text/plain
-      as a default; however it would be permissible (if
-      slow) to look inside the data to make a better guess.
-
-      """
-
       base, ext = posixpath.splitext(path)
       if self.extensions_map.has_key(ext):
          return self.extensions_map[ext]
@@ -121,8 +75,32 @@ class MyHandler(BaseHTTPRequestHandler):
       }
 
    def AFU(self):
-      print "FIXME"
-      exit()
+      if self.path.endswith("a.afu"):
+         if q.correct == "a":
+            self.wfile.write("RICHTIG!")
+         else:
+            self.wfile.write("FALSCH!")
+      elif self.path.endswith("b.afu"):
+         if q.correct == "b":
+            self.wfile.write("RICHTIG!")
+         else:
+            self.wfile.write("FALSCH!")
+      elif self.path.endswith("c.afu"):
+         if q.correct == "c":
+            self.wfile.write("RICHTIG!")
+         else:
+            self.wfile.write("FALSCH!")
+      elif self.path.endswith("d.afu"):
+         if q.correct == "d":
+            self.wfile.write("RICHTIG!")
+         else:
+            self.wfile.write("FALSCH!")
+      elif self.path.endswith("hint.afu"):
+         print "FIXME"
+      else:
+         print "FIXME"
+
+      self.StartDisplay()
 
    def StartDisplay(self):
       self.send_response(200)
