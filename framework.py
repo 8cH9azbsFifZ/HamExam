@@ -2,7 +2,7 @@ import questions, statistic
 
 class Framework:
    def AskQuestion(self):
-      qid = str("TB305" )
+      qid = str("TB305")
       self.q.AskQuestion (qid)
       self.id = qid
       self.question = self.q.question
@@ -28,5 +28,5 @@ class Framework:
       return
 
    def __init__(self):
-      self.q = questions.Questions
-      self.s = statistic.Statistic
+      self.q = questions.Questions()
+      self.s = statistic.Statistic()
