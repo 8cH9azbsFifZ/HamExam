@@ -11,9 +11,8 @@ class MyHandler(BaseHTTPRequestHandler):
       self.send_header('Content-type',	'text/html')
       self.end_headers()
 
-      self.wfile.write("abc")
-      self.q.AskQuestion("TB305")
-      self.wfile.write(self.q.question)
+      q.AskQuestion("TB305")
+      self.wfile.write(q.question)
 
 
 
@@ -29,12 +28,11 @@ class MyHandler(BaseHTTPRequestHandler):
       print "filecontent", upfilecontent[0]
       self.wfile.write("<HTML>POST OK.<BR><BR>");
       self.wfile.write(upfilecontent[0]);
-
-   def __init__(self):
-      self.q = questions.Questions()
          
 def main():
    try:
+      global q 
+      q = questions.Questions()
       server = HTTPServer(('', 8080), MyHandler)
       print 'started httpserver...'
       server.serve_forever()
