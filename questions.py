@@ -58,8 +58,14 @@ class Questions:
       return
 
    def AskQuestion(self,id):
-      #q = self.questions[0].searchsorted (id)
-      print "Q:"#,q[1]
+      for q in self.questions:
+         if q[0] == id:
+            break
+      print "Q:",q[1]
+      print "A:",q[2][0][0][0]
+      print "B:",q[2][1][0][0]
+      print "C:",q[2][2][0][0]
+      print "D:",q[2][3][0][0]
 
    def __init__(self,filename="Questions/questions.xml"):
       self.filename=filename
@@ -68,5 +74,7 @@ class Questions:
 
       self.GetQuestions()
 
-q=Questions()
-q.AskQuestion["TA103"]
+
+q = Questions()
+
+q.AskQuestion("TA103")
