@@ -79,12 +79,11 @@ class MyHandler(BaseHTTPRequestHandler):
          answer = (self.path.split("/")[-1]).replace(".afu","")
          if not f.EvalQuestion (answer):
             self.WrongAnswer()
+         self.StartDisplay()
       elif self.path.endswith("hint.afu"):
          print "FIXME"
       else:
-         print "FIXME"
-
-      self.StartDisplay()
+         self.StartDisplay()
 
    def WrongAnswer(self):
       self.wfile.write("wrong")
