@@ -2,17 +2,20 @@
 import string,cgi,time
 from os import curdir, sep
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-import posixpath, urllib
+import posixpath, urllib, os
 
 import questions, statistic
 
 class MyHandler(BaseHTTPRequestHandler):
    def do_GET(self):
-      f = self.send_head()
-      if f:
-         self.copyfile(f, self.wfile)
-         f.close()
-   
+      if self.path.endswith(".afu"):
+         self.Good()
+      else:
+         f = self.send_head()
+         if f:
+            self.copyfile(f, self.wfile)
+            f.close()
+         
    def do_HEAD(self):
      """Serve a HEAD request."""
      f = self.send_head()
@@ -108,14 +111,14 @@ class MyHandler(BaseHTTPRequestHandler):
       else:
          return self.extensions_map['']
 
-      extensions_map = {
-         '': 'text/plain',   # Default, *must* be present
-         '.html': 'text/html',
-         '.htm': 'text/html',
-         '.gif': 'image/gif',
-         '.jpg': 'image/jpeg',
-         '.jpeg': 'image/jpeg',
-         }
+   extensions_map = {
+      '': 'text/plain',   # Default, *must* be present
+      '.html': 'text/html',
+      '.htm': 'text/html',
+      '.gif': 'image/gif',
+      '.jpg': 'image/jpeg',
+      '.jpeg': 'image/jpeg',
+      }
 
  
 
@@ -126,7 +129,12 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("<html><head><base href=\"http://127.0.0.1:8080/Questions/\"></head><body>")
 
       q.AskQuestion("TB305")
+      
       self.wfile.write(q.question)
+      self.wfile.write(q.answera)
+      self.wfile.write(q.answerb)
+      self.wfile.write(q.answerc)
+      self.wfile.write(q.answerd)
 
       self.wfile.write("</body></html>")
 
