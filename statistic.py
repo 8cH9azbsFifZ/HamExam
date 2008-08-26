@@ -12,8 +12,6 @@ def toprettyxml_fixed (node): #, encoding='utf-8'):
    PrettyPrint(node, stream=tmpStream)# , encoding=encoding)
    return tmpStream.getvalue()
 
-import xml.etree.ElementTree as ET
-
 class Statistic:
    def IncreaseCounter(self, qid, how, answer):
       nq = self.FindQuestion (qid)
@@ -41,6 +39,8 @@ class Statistic:
          cs=0
          ws=0
 
+         self.statistics.append ([qid, c, cs, ws, w, ""])
+         nq = self.FindQuestion (qid)
 
       if how == True:
          c += 1
@@ -48,7 +48,14 @@ class Statistic:
       else:
          w += 1
          ws += 1
-      
+     
+      # in-memory statistics
+      self.statistics[nq][1] = c
+      self.statistics[nq][2] = cs
+      self.statistics[nq][3] = ws
+      self.statistics[nq][4] = w
+
+      # xml file stuff
       q.setAttribute("c",str(c))
       q.setAttribute("w",str(w))
       q.setAttribute("cs",str(cs))
@@ -65,9 +72,6 @@ class Statistic:
       qq.setAttribute ("needed_time", str(nt))
       q.appendChild(qq)
       
-      self.GetStatistics ()
-      self.WriteFile()
-
    def WriteFile(self):
       ss=toprettyxml_fixed(self.root)
       f=open(self.filename,"w")

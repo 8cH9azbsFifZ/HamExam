@@ -46,6 +46,9 @@ class Framework:
    def FindGoodQuestion(self):
       return
 
+   def Close(self):
+      self.s.WriteFile()
+
    def __init__(self):
       self.q = questions.Questions()
       self.s = statistic.Statistic()

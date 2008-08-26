@@ -214,6 +214,7 @@ def main():
       server.serve_forever()
    except KeyboardInterrupt:
       print '^C received, shutting down server'
+      f.Close()
       server.socket.close()
 
 if __name__ == '__main__':
