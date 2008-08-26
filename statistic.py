@@ -7,32 +7,35 @@ import datetime
 class Statistic:
    def IncreaseCounter(self, qid, how, answer):
       nq = self.FindQuestion (qid)
-      for q in  self.root.getElementsByTagName("question"):
-         id = q.getAttribute ("id")
-         if id == qid:
-            break
-      
-      c = int(q.getAttribute ("c"))
-      w = int(q.getAttribute ("w"))
-      cs = int(q.getAttribute ("cs"))
-      ws = int(q.getAttribute ("ws"))
+      if nq >= 0:
+         for q in  self.root.getElementsByTagName("question"):
+            id = q.getAttribute ("id")
+            if id == qid:
+               break
+         
+         c = int(q.getAttribute ("c"))
+         w = int(q.getAttribute ("w"))
+         cs = int(q.getAttribute ("cs"))
+         ws = int(q.getAttribute ("ws"))
 
-      if how == True:
-         c += 1
-         cs += 1
+         if how == True:
+            c += 1
+            cs += 1
+         else:
+            w += 1
+            ws += 1
+         
+         q.setAttribute("c",str(c).encode("utf8"))
+         q.setAttribute("w",str(w).encode("utf8"))
+         q.setAttribute("cs",str(cs).encode("utf8"))
+         q.setAttribute("ws",str(ws).encode("utf8"))
+         
+
+         t = self.Timestamp()
+         a = [1,2,4,8][(["a","b","c","d"]).index(answer)]
+         nt = 15000 # FIXME
       else:
-         w += 1
-         ws += 1
-      
-      q.setAttribute("c",str(c).encode("utf8"))
-      q.setAttribute("w",str(w).encode("utf8"))
-      q.setAttribute("cs",str(cs).encode("utf8"))
-      q.setAttribute("ws",str(ws).encode("utf8"))
-      
 
-      t = self.Timestamp()
-      a = [1,2,4,8][(["a","b","c","d"]).index(answer)]
-      nt = 15000 # FIXME
       
       # FIXME
       #qq = q.createElement ("answer_clicked")
