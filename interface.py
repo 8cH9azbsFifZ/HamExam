@@ -87,6 +87,8 @@ class MyHandler(BaseHTTPRequestHandler):
          self.DisplayMenu()
       elif self.path.endswith("askquestion.afu"):
          self.AskQuestion()
+      elif self.path.endswith("showquestion.afu"):
+         self.AskQuestion(update=False)
       else:
          self.StartDisplay()
 
@@ -145,19 +147,21 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("<frame name=main src=askquestion.afu scrolling=auto noresize>")
       self.wfile.write("</frameset>")
 
-   def AskQuestion(self):
+   def AskQuestion(self,update=True):
       self.base="http://127.0.0.1:8080"
       self.ShowHead()
       self.wfile.write("<body>")
 
-      f.AskQuestion()
+      if update:
+         f.AskQuestion()
+
       self.DisplayQuestion()
 
       self.wfile.write("<div class=answer>")
-      self.wfile.write("<a href="+self.base+"/a.afu>A</a>"+f.answera.encode("utf8")+"<br>")
-      self.wfile.write("<a href="+self.base+"/b.afu>B</a>"+f.answerb.encode("utf8")+"<br>")
-      self.wfile.write("<a href="+self.base+"/c.afu>C</a>"+f.answerc.encode("utf8")+"<br>")
-      self.wfile.write("<a href="+self.base+"/d.afu>D</a>"+f.answerd.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+self.base+"/a.afu class=button1>A</a>"+f.answera.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+self.base+"/b.afu class=button1>B</a>"+f.answerb.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+self.base+"/c.afu class=button1>C</a>"+f.answerc.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+self.base+"/d.afu class=button1>D</a>"+f.answerd.encode("utf8")+"<br>")
       self.wfile.write("</div>")
 
       self.wfile.write("<div class=button>")
@@ -180,6 +184,7 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("<html><head><base target=main><link href="+self.stylefile+" rel=stylesheet type=text/css></head>")
       self.wfile.write("<body class=menue><div class=menue>")
       self.wfile.write("<a class=menue href="+self.base+"/askquestion.afu>Abfragen</a>")
+      self.wfile.write("<a class=menue href="+self.base+"/showquestion.afu>Zur&uuml;ck zur Frage</a>")
       self.wfile.write("<a class=menue href="+self.base+"/method.afu>Abfragemethode</a>")
       self.wfile.write("<a class=menue href="+self.base+"/statistic.afu>Statistik</a>")
       self.wfile.write("</div></body></html>")

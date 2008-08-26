@@ -2977,6 +2977,6 @@
    <answer_clicked answer_code="1" datetime="2007-09-27T00:26:10" needed_time="6548"/>
    <answer_clicked answer_code="1" datetime="2007-10-08T22:43:28" needed_time="5713"/>
   </question>
- <question c="1" cs="1" id="TK214" w="0" ws="0"><answer_clicked answer_code="2" datetime="2008-08-26T16:36:30" needed_time="15000"/></question><question c="1" cs="1" id="TD707" w="0" ws="0"><answer_clicked answer_code="8" datetime="2008-08-26T16:39:02" needed_time="15000"/></question></learning>
+ <question c="1" cs="1" id="TK214" w="0" ws="0"><answer_clicked answer_code="2" datetime="2008-08-26T16:36:30" needed_time="15000"/></question><question c="1" cs="1" id="TD707" w="0" ws="0"><answer_clicked answer_code="8" datetime="2008-08-26T16:39:02" needed_time="15000"/></question><question c="0" cs="0" id="TE216" w="1" ws="1"><answer_clicked answer_code="2" datetime="2008-08-26T16:40:50" needed_time="15000"/></question><question c="1" cs="1" id="TJ807" w="0" ws="0"><answer_clicked answer_code="8" datetime="2008-08-26T16:41:24" needed_time="15000"/></question><question c="0" cs="0" id="TG405" w="2" ws="2"><answer_clicked answer_code="2" datetime="2008-08-26T16:45:51" needed_time="15000"/><answer_clicked answer_code="2" datetime="2008-08-26T16:45:57" needed_time="15000"/></question></learning>
  <exams/>
 </statistic>

@@ -1,10 +1,10 @@
 body              {  left:2.5%; right:2.5%; position:absolute; COLOR:#222; background: white; TEXT-ALIGN: left; FONT-FAMILY: "Minion Pro", Georgia, "Times New Roman", Times, serif; FONT-SIZE: 14px; }
-body.menue        {  left:2.5%; right:2.5%; position:absolute; COLOR:#222; background: lightblue; TEXT-ALIGN: left; FONT-FAMILY: "Minion Pro", Georgia, "Times New Roman", Times, serif; FONT-SIZE: 14px; }
+body.menue        {  left:2.5%; right:2.5%; position:absolute; COLOR:white; background: #1E90FF; TEXT-ALIGN: left; FONT-FAMILY: "Minion Pro", Georgia, "Times New Roman", Times, serif; FONT-SIZE: 14px; }
 
 img   { border:0; }
  
-a                 { color:#aa0000; text-decoration:none; }
-a:active, a:hover { text-decoration: underline; }
+a                 { color:#FF00FF; text-decoration:none; }
+a:active, a:hover { color:#FF00FF;text-decoration: underline; }
 
 a.button          { font-size: 20px; font-weight: bold; padding:10px; text-align: center; }
 
@@ -13,6 +13,7 @@ a.ger:after       { content:url(./img/german.png); border:0; }
 
 div.header        { left:12.5%; position:absolute; width:75%; text-align:left; vertical-align:middle; }
 div.button        { padding-bottom: 10px; text-align: center; }
+a.button1         { padding-right: 5px; }
 div.question      { padding-bottom: 10px; }
 div.answer        { padding-bottom: 10px; }
 div.hint          { padding-bottom: 10px; }
@@ -22,7 +23,7 @@ div.id            { font-weight: bold; font-color=red; }
 div.statistics    { font-size: small; font-variant: small-caps; text-align:right;}
 
 div.menue         { text-align:left; padding-top:4pt; font-size:14px; border:0 0 0 0; margin:0 0 0 0; }
-a.menue           { color:#222; text-decoration: none; padding:2pt; }
-a.menue:hover     { color:#666; text-decoration:underline; /*border-bottom:#666 2px solid; */ }
+a.menue           { color:white; text-decoration: none; padding:2pt; }
+a.menue:hover     { color:#FF00FF; text-decoration:underline; /*border-bottom:#666 2px solid; */ }
 
 div.title         { text-align: center; font-size: 32px; font-weight: normal; letter-spacing: -1pt; border-bottom:#222 1px solid; height:26pt; }
