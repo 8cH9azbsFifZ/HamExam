@@ -5,16 +5,13 @@ import os
 import datetime
 
 class Statistic:
-   def IncreaseCounter(self, qid, how):
+   def IncreaseCounter(self, qid, how, answer):
       nq = self.FindQuestion (qid)
       for q in  self.root.getElementsByTagName("question"):
          id = q.getAttribute ("id")
          if id == qid:
             break
       
-      id = q.getAttribute ("id")
-      cs = q.getAttribute ("cs")
-      ws = q.getAttribute ("ws")
       c = int(q.getAttribute ("c"))
       w = int(q.getAttribute ("w"))
 
@@ -22,15 +19,24 @@ class Statistic:
          c += 1
       else:
          w += 1
+      
+      q.setAttribute("c",str(c).encode("utf8"))
+      q.setAttribute("w",str(w).encode("utf8"))
+      
+      cs = q.getAttribute ("cs") #FIXME
+      ws = q.getAttribute ("ws") #FIXME
 
       t = self.Timestamp()
-
+      a = [1,2,4,8][(["a","b","c","d"]).index(answer)]
+      nt = 15000 # FIXME
+      
+      qq = q.createElement ("answer_clicked")
+      qq.setAttribute ("datetime", str(t).encode("utf8"))
+      qq.setAttribute ("answer_code", str(a).encode("utf8"))
+      qq.setAttribute ("needed_time", str(nt).encode("utf8"))
+      qq.appendChild()
 
       print "Yeas",qid,id,c,cs,ws,w,t
-      #<question w="0" id="TA101" ws="0" c="6" cs="6" >
-      #   <answer_clicked datetime="2007-09-13T02:56:34" answer_code="1" needed_time="14543" />
-
-      return
 
    def GetStatistics(self):
       self.stat = minidom.parse (self.filename)
