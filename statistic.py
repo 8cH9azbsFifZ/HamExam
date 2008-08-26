@@ -34,15 +34,22 @@ class Statistic:
          t = self.Timestamp()
          a = [1,2,4,8][(["a","b","c","d"]).index(answer)]
          nt = 15000 # FIXME
-      else:
-         return
       
+         qq = q.appendChild (self.stat.createElement(None,u'answer_clicked'))
+         f=open("test.xml","w")
+         self.root.writexml(f)
+         f.close()
+
       # FIXME
       #qq = q.createElement ("answer_clicked")
       #qq.setAttribute ("datetime", str(t).encode("utf8"))
       #qq.setAttribute ("answer_code", str(a).encode("utf8"))
       #qq.setAttribute ("needed_time", str(nt).encode("utf8"))
       #qq.appendChild()
+
+      else:
+         print "ne"
+         return
 
       print "Yeas",qid,id,c,cs,ws,w,t
 
