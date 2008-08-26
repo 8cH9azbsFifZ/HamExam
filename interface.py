@@ -99,17 +99,17 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write ("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf8\">")
       
       self.wfile.write ("<SCRIPT LANGUAGE=JavaScript>")
-      self.wfile.write ("var inNav = navigator.appVersion.indexOf(\"MSIE\") < 0;")
-      self.wfile.write ("function eval_key (event) {")
-      self.wfile.write ("key=String.fromCharCode((inNav==1) ? event.which : event.keyCode);")
-      self.wfile.write ("if (event.keyCode == 65) {         window.location = "+self.base+"/a.afu")
-      self.wfile.write ("} else if (event.keyCode == 67) {  window.location = "+self.base+"/b.afu")
-      self.wfile.write ("} else if (event.keyCode == 68) {  window.location = "+self.base+"/c.afu")
-      self.wfile.write ("} else if (event.keyCode == 69) {  window.location = "+self.base+"/d.afu")
+      self.wfile.write ("document.onkeydown = eval_key;            ")
+      self.wfile.write ("function eval_key (e) {")
+      self.wfile.write ("var keycode; if (window.event) keycode = window.event.keyCode; else if (e) keycode = e.which;")
+      self.wfile.write ("if (keycode == 65) {         window.location = \""+self.base+"/a.afu\";")
+      self.wfile.write ("} else if (keycode == 67) {  window.location = \""+self.base+"/b.afu\";")
+      self.wfile.write ("} else if (keycode == 68) {  window.location = \""+self.base+"/c.afu\";")
+      self.wfile.write ("} else if (keycode == 69) {  window.location = \""+self.base+"/d.afu\";")
       self.wfile.write ("}")
       self.wfile.write ("</script>")
 
-      self.wfile.write ("</head><body onkeypress=\"eval_key(event)\">")
+      self.wfile.write ("</head><body>")
             
    def DisplayHint(self):
       self.SendHeader() 
@@ -130,7 +130,7 @@ class MyHandler(BaseHTTPRequestHandler):
    def WrongAnswer(self):
       self.SendHeader() 
       self.ShowHead()
-      self.wfile.write("<div class=wronganswer>Falsche Antwort</div><br>")
+      self.wfile.write("<div class=wronganswer>Falsche Antwort</div>")
       self.DisplayQuestion()
       self.wfile.write("<div class=correctanswer>"+f.answercorrect.encode("utf8")+"</div>")
       
@@ -153,10 +153,17 @@ class MyHandler(BaseHTTPRequestHandler):
       self.DisplayQuestion()
 
       self.wfile.write("<div class=answer>")
-      self.wfile.write("<a href="+self.base+"/a.afu class=button>A</a>"+f.answera.encode("utf8")+"<br>")
-      self.wfile.write("<a href="+self.base+"/b.afu class=button>B</a>"+f.answerb.encode("utf8")+"<br>")
-      self.wfile.write("<a href="+self.base+"/c.afu class=button>C</a>"+f.answerc.encode("utf8")+"<br>")
-      self.wfile.write("<a href="+self.base+"/d.afu class=button>D</a>"+f.answerd.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+self.base+"/a.afu>A</a>"+f.answera.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+self.base+"/b.afu>B</a>"+f.answerb.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+self.base+"/c.afu>C</a>"+f.answerc.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+self.base+"/d.afu>D</a>"+f.answerd.encode("utf8")+"<br>")
+      self.wfile.write("</div>")
+
+      self.wfile.write("<div class=button>")
+      self.wfile.write("<a href="+self.base+"/a.afu class=button>A</a>")
+      self.wfile.write("<a href="+self.base+"/b.afu class=button>B</a>")
+      self.wfile.write("<a href="+self.base+"/c.afu class=button>C</a>")
+      self.wfile.write("<a href="+self.base+"/d.afu class=button>D</a>")
       self.wfile.write("</div>")
 
       self.wfile.write("<div class=hint>")

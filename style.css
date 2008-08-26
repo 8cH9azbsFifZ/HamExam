@@ -6,13 +6,18 @@ img   { border:0; }
 a                 { color:#aa0000; text-decoration:none; }
 a:active, a:hover { text-decoration: underline; }
 
+a.button          { font-size: 20px; font-weight: bold; padding:10px; text-align: center; }
+
 a.eng:after       { content:url(./img/english.png); border:0; }
 a.ger:after       { content:url(./img/german.png); border:0; }
 
 div.header        { left:12.5%; position:absolute; width:75%; text-align:left; vertical-align:middle; }
+div.button        { padding-bottom: 10px; text-align: center; }
 div.question      { padding-bottom: 10px; }
 div.answer        { padding-bottom: 10px; }
 div.hint          { padding-bottom: 10px; }
+div.wronganswer   { color: red; }
+div.correctanswer { color: green; }
 div.id            { font-weight: bold; font-color=red; }
 
 div.menue         { text-align:left; padding-top:4pt; font-size:14px; border:0 0 0 0; margin:0 0 0 0; }
