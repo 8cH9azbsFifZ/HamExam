@@ -34,7 +34,17 @@ class Questions:
          self.questions.append ([id, textquestion,answers])
 
    def GetHints(self):
-      return
+      self.hints = []
+      for h in self.root.getElementsByTagName ("hint"):
+         id = h.getAttribute ("question")
+         content=[]
+         for child in h.childNodes:
+            if child.nodeType == Node.TEXT_NODE:
+               content.append(child.nodeValue)
+         if content:
+            strContent = string.join(content)
+
+         self.hints.append ([id, strContent])
 
    def GetChapters(self):
       chapters=[]
@@ -55,6 +65,11 @@ class Questions:
                      name3 = e.getAttribute("name")
 
    def GetBasicProperties(self):
+      #self.title = self.root.getAttribute("title")
+      #publisher
+      #version -published
+      #contact
+      #exam id="T" name="Technische Kenntnisse / Klasse A" duration="90" maxerrorpoints="13"
       return
 
    def AskQuestion(self,id):
