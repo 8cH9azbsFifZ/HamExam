@@ -14,27 +14,32 @@ class Statistic:
       
       c = int(q.getAttribute ("c"))
       w = int(q.getAttribute ("w"))
+      cs = int(q.getAttribute ("cs"))
+      ws = int(q.getAttribute ("ws"))
 
       if how == True:
          c += 1
+         cs += 1
       else:
          w += 1
+         ws += 1
       
       q.setAttribute("c",str(c).encode("utf8"))
       q.setAttribute("w",str(w).encode("utf8"))
+      q.setAttribute("cs",str(cs).encode("utf8"))
+      q.setAttribute("ws",str(ws).encode("utf8"))
       
-      cs = q.getAttribute ("cs") #FIXME
-      ws = q.getAttribute ("ws") #FIXME
 
       t = self.Timestamp()
       a = [1,2,4,8][(["a","b","c","d"]).index(answer)]
       nt = 15000 # FIXME
       
-      qq = q.createElement ("answer_clicked")
-      qq.setAttribute ("datetime", str(t).encode("utf8"))
-      qq.setAttribute ("answer_code", str(a).encode("utf8"))
-      qq.setAttribute ("needed_time", str(nt).encode("utf8"))
-      qq.appendChild()
+      # FIXME
+      #qq = q.createElement ("answer_clicked")
+      #qq.setAttribute ("datetime", str(t).encode("utf8"))
+      #qq.setAttribute ("answer_code", str(a).encode("utf8"))
+      #qq.setAttribute ("needed_time", str(nt).encode("utf8"))
+      #qq.appendChild()
 
       print "Yeas",qid,id,c,cs,ws,w,t
 
