@@ -1,4 +1,5 @@
 import questions, statistic
+import random as r
 
 class Framework:
    def AskQuestion(self):
@@ -10,6 +11,7 @@ class Framework:
       self.answerb = self.q.answerb
       self.answerc = self.q.answerc
       self.answerd = self.q.answerd
+      self.answercorrect = self.q.answercorrect
       self.hint = self.q.hint
 
    def EvalQuestion(self, answer):
@@ -23,7 +25,8 @@ class Framework:
       return c
 
    def FindNewQuestion(self):
-      return
+      nq = int (r.random()*self.q.nquestions)
+      return self.q.questions[nq][0]
 
    def FindBadQuestion(self):
       return

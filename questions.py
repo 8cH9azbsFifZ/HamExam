@@ -2,6 +2,7 @@
 import sys, string
 from xml.dom import minidom, Node
 import os
+import numpy
 
 class Questions:
    loud = False
@@ -41,6 +42,8 @@ class Questions:
                   answers.append ([answer, correct])
 
          self.questions.append ([id, textquestion,answers, hint])
+      
+      self.nquestions = numpy.size (self.questions)
 
    def GetHints(self):
       if self.loud:
@@ -116,6 +119,7 @@ class Questions:
       self.answerb = q[2][1][0][0]
       self.answerc = q[2][2][0][0]
       self.answerd = q[2][3][0][0]
+      self.answercorrect = self.answera #FIXME
       self.hint = q[3]
 
    def __init__(self,filename="Questions/questions.xml"):

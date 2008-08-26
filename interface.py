@@ -110,9 +110,9 @@ class MyHandler(BaseHTTPRequestHandler):
       self.SendHeader() 
       self.base="http://127.0.0.1:8080"
       self.wfile.write("<html><head><base href="+self.base+"/Questions/></head><body>")
-      self.wfile.write("<b>Falsche Antwort<b><br>")
+      self.wfile.write("<div class=wronganswer>Falsche Antwort</div><br>")
       self.DisplayQuestion()
-      self.wfile.write("<div class=correctanswer>"+f.answera+"</div>")
+      self.wfile.write("<div class=correctanswer>"+f.answercorrect+"</div>")
       
 
    def StartDisplay(self):
