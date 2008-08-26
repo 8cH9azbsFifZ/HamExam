@@ -17,41 +17,49 @@ class Statistic:
          w = int(q.getAttribute ("w"))
          cs = int(q.getAttribute ("cs"))
          ws = int(q.getAttribute ("ws"))
-
-         if how == True:
-            c += 1
-            cs += 1
-         else:
-            w += 1
-            ws += 1
-         
-         q.setAttribute("c",str(c).encode("utf8"))
-         q.setAttribute("w",str(w).encode("utf8"))
-         q.setAttribute("cs",str(cs).encode("utf8"))
-         q.setAttribute("ws",str(ws).encode("utf8"))
-         
-
-         t = self.Timestamp()
-         a = [1,2,4,8][(["a","b","c","d"]).index(answer)]
-         nt = 15000 # FIXME
       
-         qq = q.appendChild (self.stat.createElement(None,u'answer_clicked'))
-         f=open("test.xml","w")
-         self.root.writexml(f)
-         f.close()
-
-      # FIXME
-      #qq = q.createElement ("answer_clicked")
-      #qq.setAttribute ("datetime", str(t).encode("utf8"))
-      #qq.setAttribute ("answer_code", str(a).encode("utf8"))
-      #qq.setAttribute ("needed_time", str(nt).encode("utf8"))
-      #qq.appendChild()
-
       else:
-         print "ne"
-         return
+         print "NEU",qid
+         q = self.stat.createElement(u'question')
+         q.setAttribute("id",qid)
 
-      print "Yeas",qid,id,c,cs,ws,w,t
+         sss = self.root.getElementsByTagName("learning")[0]
+         sss.appendChild(q)
+
+         c=0
+         w=0
+         cs=0
+         ws=0
+
+
+      if how == True:
+         c += 1
+         cs += 1
+      else:
+         w += 1
+         ws += 1
+      
+      q.setAttribute("c",str(c).encode("utf8"))
+      q.setAttribute("w",str(w).encode("utf8"))
+      q.setAttribute("cs",str(cs).encode("utf8"))
+      q.setAttribute("ws",str(ws).encode("utf8"))
+      
+
+      t = self.Timestamp()
+      a = [1,2,4,8][(["a","b","c","d"]).index(answer)]
+      nt = 15000 # FIXME
+   
+      qq = self.stat.createElement(u'answer_clicked')
+      qq.setAttribute ("datetime", str(t).encode("utf8"))
+      qq.setAttribute ("answer_code", str(a).encode("utf8"))
+      qq.setAttribute ("needed_time", str(nt).encode("utf8"))
+      q.appendChild(qq)
+      
+      f=open(self.filename,"w")
+      self.root.writexml(f)
+      f.close()
+
+      self.GetStatistics ()
 
    def GetStatistics(self):
       self.stat = minidom.parse (self.filename)
@@ -89,8 +97,12 @@ class Statistic:
 
    def ThisQuestion(self,qid):
       q = self.FindQuestion (qid)
-      c = self.statistics[q][1]
-      w = self.statistics[q][4]
+      if q >= 0:
+         c = self.statistics[q][1]
+         w = self.statistics[q][4]
+      else:
+         c=str(0)
+         w=str(0)
       return [c,w]
 
    def Timestamp(self):
