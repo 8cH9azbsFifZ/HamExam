@@ -6,7 +6,7 @@ import datetime
 
 class Statistic:
    def IncreaseCounter(self, id, how):
-
+      print "Yeas"
       #<question w="0" id="TA101" ws="0" c="6" cs="6" >
       #   <answer_clicked datetime="2007-09-13T02:56:34" answer_code="1" needed_time="14543" />
 
