@@ -10,6 +10,7 @@ class Framework:
       self.answerb = self.q.answerb
       self.answerc = self.q.answerc
       self.answerd = self.q.answerd
+      self.hint = self.q.hint
 
    def EvalQuestion(self, answer):
       if self.q.correct == answer:

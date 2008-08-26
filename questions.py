@@ -56,7 +56,9 @@ class Questions:
          if content:
             strContent = string.join(content)
 
-         self.hints.append ([id, strContent])
+         ss = strContent.split("<a href=\"")[1].split("\">")[0]
+
+         self.hints.append ([id, ss])
 
    def GetHint(self,id):
       if self.loud:

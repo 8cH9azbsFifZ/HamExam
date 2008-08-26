@@ -81,9 +81,16 @@ class MyHandler(BaseHTTPRequestHandler):
             self.WrongAnswer()
          self.StartDisplay()
       elif self.path.endswith("hint.afu"):
-         print "FIXME"
+         self.DisplayHint()
       else:
          self.StartDisplay()
+
+   def DisplayHint(self):
+      self.send_response(200)
+      self.send_header('Content-type', 'text/html')
+      self.end_headers()
+
+      self.wfile.write(f.hint)
 
    def WrongAnswer(self):
       self.wfile.write("wrong")
@@ -113,7 +120,7 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("</div>")
 
       self.wfile.write("<div class=hint>")
-      self.wfile.write("<a href="+self.base+"/hint.afu>Hinweis</a>")
+      self.wfile.write("<a href="+self.base+"/hint.afu>Hinweis</a></div>")
 
       self.wfile.write("</body></html>")
 
