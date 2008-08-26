@@ -92,7 +92,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
    def ShowHead(self):
       self.base="http://127.0.0.1:8080"
-      self.stylefile=""
+      self.stylefile=self.base+"/style.css"
       
       self.wfile.write ("<html><head><base href="+self.base+"/Questions/>")
       self.wfile.write ("<link href="+self.stylefile+" rel=stylesheet type=text/css>")
@@ -127,7 +127,7 @@ class MyHandler(BaseHTTPRequestHandler):
       self.SendHeader()
       self.base="http://127.0.0.1:8080"
 
-      self.wfile.write("<frameset border=0 frameborder=0 framespacing=0 marginwidth=0 rows=70px,*>")
+      self.wfile.write("<frameset border=0 frameborder=0 framespacing=0 marginwidth=0 rows=30px,*>")
       self.wfile.write("<frame name=menue src=menue.afu scrolling=no noresize>")
       self.wfile.write("<frame name=main src=askquestion.afu scrolling=auto noresize>")
       self.wfile.write("</frameset>")
@@ -155,10 +155,10 @@ class MyHandler(BaseHTTPRequestHandler):
    def DisplayMenu(self):
       self.SendHeader()
       self.base="http://127.0.0.1:8080"
-      self.stylefile=""
+      self.stylefile=self.base+"/style.css"
 
       self.wfile.write("<html><head><base target=main><link href="+self.stylefile+" rel=stylesheet type=text/css></head>")
-      self.wfile.write("<body><div class=menue>")
+      self.wfile.write("<body class=menue><div class=menue>")
       self.wfile.write("<a class=menue href="+self.base+"/askquestion.afu>Abfragen</a>")
       self.wfile.write("</div></body></html>")
       
