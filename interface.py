@@ -93,21 +93,18 @@ class MyHandler(BaseHTTPRequestHandler):
          self.StartDisplay()
 
    def ShowHead(self):
-      self.base="http://127.0.0.1:8080"
-      self.stylefile=self.base+"/style.css"
-      
-      self.wfile.write ("<html><head><base href="+self.base+"/Questions/>")
-      self.wfile.write ("<link href="+self.stylefile+" rel=stylesheet type=text/css>")
+      self.wfile.write ("<html><head><base href="+base+"/Questions/>")
+      self.wfile.write ("<link href="+stylefile+" rel=stylesheet type=text/css>")
       self.wfile.write ("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf8\">")
       
       self.wfile.write ("<SCRIPT LANGUAGE=\"JavaScript\">")
       self.wfile.write ("var inNav = navigator.appVersion.indexOf(\"MSIE\") < 0;")
       self.wfile.write ("function eval_key (event) {")
       self.wfile.write ("var key = (inNav==1) ? event.which : event.keyCode;")
-      self.wfile.write ("if (key == 65) {   window.location = \""+self.base+"/a.afu\";")
-      self.wfile.write ("} else if (key == 66) {  window.location = \""+self.base+"/b.afu\";")
-      self.wfile.write ("} else if (key == 67) {  window.location = \""+self.base+"/c.afu\";")
-      self.wfile.write ("} else if (key == 68) {  window.location = \""+self.base+"/d.afu\";")
+      self.wfile.write ("if (key == 65) {   window.location = \""+base+"/a.afu\";")
+      self.wfile.write ("} else if (key == 66) {  window.location = \""+base+"/b.afu\";")
+      self.wfile.write ("} else if (key == 67) {  window.location = \""+base+"/c.afu\";")
+      self.wfile.write ("} else if (key == 68) {  window.location = \""+base+"/d.afu\";")
       self.wfile.write ("}")
       self.wfile.write ("}")
       self.wfile.write ("document.onkeydown = eval_key;")
@@ -142,7 +139,6 @@ class MyHandler(BaseHTTPRequestHandler):
 
    def StartDisplay(self):
       self.SendHeader()
-      self.base="http://127.0.0.1:8080"
 
       self.wfile.write("<frameset border=0 frameborder=0 framespacing=0 marginwidth=0 rows=30px,*>")
       self.wfile.write("<frame name=menue src=menue.afu scrolling=no noresize>")
@@ -150,7 +146,6 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("</frameset>")
 
    def AskQuestion(self,update=True):
-      self.base="http://127.0.0.1:8080"
       self.ShowHead()
       self.wfile.write("<body>")
 
@@ -160,35 +155,33 @@ class MyHandler(BaseHTTPRequestHandler):
       self.DisplayQuestion()
 
       self.wfile.write("<div class=answer>")
-      self.wfile.write("<a href="+self.base+"/a.afu class=button1>A</a>"+f.answera.encode("utf8")+"<br>")
-      self.wfile.write("<a href="+self.base+"/b.afu class=button1>B</a>"+f.answerb.encode("utf8")+"<br>")
-      self.wfile.write("<a href="+self.base+"/c.afu class=button1>C</a>"+f.answerc.encode("utf8")+"<br>")
-      self.wfile.write("<a href="+self.base+"/d.afu class=button1>D</a>"+f.answerd.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+base+"/a.afu class=button1>A</a>"+f.answera.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+base+"/b.afu class=button1>B</a>"+f.answerb.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+base+"/c.afu class=button1>C</a>"+f.answerc.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+base+"/d.afu class=button1>D</a>"+f.answerd.encode("utf8")+"<br>")
       self.wfile.write("</div>")
 
       self.wfile.write("<div class=button>")
-      self.wfile.write("<a href="+self.base+"/a.afu class=button>A</a>")
-      self.wfile.write("<a href="+self.base+"/b.afu class=button>B</a>")
-      self.wfile.write("<a href="+self.base+"/c.afu class=button>C</a>")
-      self.wfile.write("<a href="+self.base+"/d.afu class=button>D</a>")
+      self.wfile.write("<a href="+base+"/a.afu class=button>A</a>")
+      self.wfile.write("<a href="+base+"/b.afu class=button>B</a>")
+      self.wfile.write("<a href="+base+"/c.afu class=button>C</a>")
+      self.wfile.write("<a href="+base+"/d.afu class=button>D</a>")
       self.wfile.write("</div>")
 
       self.wfile.write("<div class=hint>")
-      self.wfile.write("<a href="+self.base+"/hint.afu target=hint>Hinweis</a></div>")
+      self.wfile.write("<a href="+base+"/hint.afu target=hint>Hinweis</a></div>")
 
       self.wfile.write("</body></html>")
 
    def DisplayMenu(self):
       self.SendHeader()
-      self.base="http://127.0.0.1:8080"
-      self.stylefile=self.base+"/style.css"
 
-      self.wfile.write("<html><head><base target=main><link href="+self.stylefile+" rel=stylesheet type=text/css></head>")
+      self.wfile.write("<html><head><base target=main><link href="+stylefile+" rel=stylesheet type=text/css></head>")
       self.wfile.write("<body class=menue><div class=menue>")
-      self.wfile.write("<a class=menue href="+self.base+"/askquestion.afu>Abfragen</a>")
-      self.wfile.write("<a class=menue href="+self.base+"/showquestion.afu>Zur&uuml;ck zur Frage</a>")
-      self.wfile.write("<a class=menue href="+self.base+"/method.afu>Abfragemethode</a>")
-      self.wfile.write("<a class=menue href="+self.base+"/statistic.afu>Statistik</a>")
+      self.wfile.write("<a class=menue href="+base+"/askquestion.afu>Abfragen</a>")
+      self.wfile.write("<a class=menue href="+base+"/showquestion.afu>Zur&uuml;ck zur Frage</a>")
+      self.wfile.write("<a class=menue href="+base+"/method.afu>Abfragemethode</a>")
+      self.wfile.write("<a class=menue href="+base+"/statistic.afu>Statistik</a>")
       self.wfile.write("</div></body></html>")
       
 
@@ -206,14 +199,19 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write(upfilecontent[0]);
          
 def main():
+   global f,port,base,stylefile
+   port = 8080
+   base = "http://127.0.0.1:"+str(port)+"/"
+   stylefile = base+"/style.css"
+
    try:
-      global f 
       f = framework.Framework()
-      server = HTTPServer(('', 8080), MyHandler)
-      print 'started httpserver...'
+      server = HTTPServer(('', port), MyHandler)
+      print 'Started httpserver on port',port
+      print "Terminate with Ctrl+C"
       server.serve_forever()
    except KeyboardInterrupt:
-      print '^C received, shutting down server'
+      print '^C received, shutting down http server'
       f.Close()
       server.socket.close()
 

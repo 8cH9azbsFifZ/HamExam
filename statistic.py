@@ -81,7 +81,7 @@ class Statistic:
       f.close()
    
    def OpenFile(self):
-      print "Opening statistics file".,self.filename
+      print "Opening statistics file",self.filename
       self.stat = minidom.parse (self.filename)
       self.root = self.stat.documentElement
 
