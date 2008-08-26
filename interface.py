@@ -179,6 +179,8 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("<html><head><base target=main><link href="+self.stylefile+" rel=stylesheet type=text/css></head>")
       self.wfile.write("<body class=menue><div class=menue>")
       self.wfile.write("<a class=menue href="+self.base+"/askquestion.afu>Abfragen</a>")
+      self.wfile.write("<a class=menue href="+self.base+"/method.afu>Abfragemethode</a>")
+      self.wfile.write("<a class=menue href="+self.base+"/statistic.afu>Statistik</a>")
       self.wfile.write("</div></body></html>")
       
 

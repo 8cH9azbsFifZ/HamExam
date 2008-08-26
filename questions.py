@@ -2,6 +2,7 @@
 import sys, string
 from xml.dom import minidom, Node
 import os
+import random as r
 
 class Questions:
    loud = False
@@ -113,13 +114,27 @@ class Questions:
 
       self.id = id
       self.question = q[1]
-      self.correct = "a" #FIXME
-      self.answera = q[2][0][0][0]
-      self.answerb = q[2][1][0][0]
-      self.answerc = q[2][2][0][0]
-      self.answerd = q[2][3][0][0]
+      
+      s = self.Random()
+      self.correct = ["a","b","c","d"][s.index(0)]
+      self.answera = q[2][s[0]][0][0]
+      self.answerb = q[2][s[1]][0][0]
+      self.answerc = q[2][s[2]][0][0]
+      self.answerd = q[2][s[3]][0][0]
       self.answercorrect = self.answera #FIXME
       self.hint = q[3]
+
+   def Random(self):
+      s = []
+      ss = 0
+      while True:
+         nn = r.randint(0,3)
+         if not nn in s:
+            s.append (nn)
+            ss += 1
+            if ss == 4:
+               break
+      return s
 
    def __init__(self,filename="Questions/questions.xml"):
       self.filename=filename
