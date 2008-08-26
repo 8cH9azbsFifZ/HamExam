@@ -97,7 +97,19 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write ("<html><head><base href="+self.base+"/Questions/>")
       self.wfile.write ("<link href="+self.stylefile+" rel=stylesheet type=text/css>")
       self.wfile.write ("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf8\">")
-      self.wfile.write ("</head><body>")
+      
+      self.wfile.write ("<SCRIPT LANGUAGE=JavaScript>")
+      self.wfile.write ("var inNav = navigator.appVersion.indexOf(\"MSIE\") < 0;")
+      self.wfile.write ("function eval_key (event) {")
+      self.wfile.write ("key=String.fromCharCode((inNav==1) ? event.which : event.keyCode);")
+      self.wfile.write ("if (event.keyCode == 65) {         window.location = "+self.base+"/a.afu")
+      self.wfile.write ("} else if (event.keyCode == 67) {  window.location = "+self.base+"/b.afu")
+      self.wfile.write ("} else if (event.keyCode == 68) {  window.location = "+self.base+"/c.afu")
+      self.wfile.write ("} else if (event.keyCode == 69) {  window.location = "+self.base+"/d.afu")
+      self.wfile.write ("}")
+      self.wfile.write ("</script>")
+
+      self.wfile.write ("</head><body onkeypress=\"eval_key(event)\">")
             
    def DisplayHint(self):
       self.SendHeader() 
