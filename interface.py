@@ -101,6 +101,12 @@ class MyHandler(BaseHTTPRequestHandler):
       self.send_header('Content-type',	'text/html')
       self.end_headers()
 
+#<frameset border=0 frameborder=0 framespacing=0 marginwidth=0 rows=70px,*>
+#   <frame name=menue src="./menue.html" scrolling=no noresize>
+#      <frame name=main src="about" scrolling=auto noresize>
+#      </frameset>
+      
+
       self.base="http://127.0.0.1:8080"
 
       self.wfile.write("<html><head><base href="+self.base+"/Questions/></head><body>")
@@ -125,7 +131,20 @@ class MyHandler(BaseHTTPRequestHandler):
 
       self.wfile.write("</body></html>")
 
+   
 
+   def DisplayMenu(self):
+      self.send_response(200)
+      self.send_header('Content-type', 'text/html')
+      self.end_headers()
+
+      self.stylefile=""
+
+      self.wfile.write("<html><head><base target=main><link href="+self.stylefile+" rel=stylesheet type=text/css></head>")
+      self.wfile.write("<body><div class=menue>")
+      self.wfile.write("<a class=menue href=>Abfragen</a>")
+      self.wfile.write("</div></body></html>")
+      
 
    def do_POST(self):
       global rootnode
