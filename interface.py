@@ -92,6 +92,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
    def ShowHead(self):
       self.base="http://127.0.0.1:8080"
+      self.stylefile=""
       
       self.wfile.write ("<html><head><base href="+self.base+"/Questions/>")
       self.wfile.write ("<link href="+self.stylefile+" rel=stylesheet type=text/css>")
@@ -116,11 +117,10 @@ class MyHandler(BaseHTTPRequestHandler):
 
    def WrongAnswer(self):
       self.SendHeader() 
-      self.base="http://127.0.0.1:8080"
-      self.wfile.write("<html><head><base href="+self.base+"/Questions/></head><body>")
+      self.ShowHead()
       self.wfile.write("<div class=wronganswer>Falsche Antwort</div><br>")
       self.DisplayQuestion()
-      self.wfile.write("<div class=correctanswer>"+f.answercorrect+"</div>")
+      self.wfile.write("<div class=correctanswer>"+f.answercorrect.encode("utf8")+"</div>")
       
 
    def StartDisplay(self):
@@ -134,16 +134,17 @@ class MyHandler(BaseHTTPRequestHandler):
 
    def AskQuestion(self):
       self.base="http://127.0.0.1:8080"
-      self.wfile.write("<html><head><base href="+self.base+"/Questions/></head><body>")
+      self.ShowHead()
+      self.wfile.write("<body>")
 
       f.AskQuestion()
       self.DisplayQuestion()
 
       self.wfile.write("<div class=answer>")
-      self.wfile.write("<a href="+self.base+"/a.afu class=button>A</a>"+f.answera+"<br>")
-      self.wfile.write("<a href="+self.base+"/b.afu class=button>B</a>"+f.answerb+"<br>")
-      self.wfile.write("<a href="+self.base+"/c.afu class=button>C</a>"+f.answerc+"<br>")
-      self.wfile.write("<a href="+self.base+"/d.afu class=button>D</a>"+f.answerd+"<br>")
+      self.wfile.write("<a href="+self.base+"/a.afu class=button>A</a>"+f.answera.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+self.base+"/b.afu class=button>B</a>"+f.answerb.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+self.base+"/c.afu class=button>C</a>"+f.answerc.encode("utf8")+"<br>")
+      self.wfile.write("<a href="+self.base+"/d.afu class=button>D</a>"+f.answerd.encode("utf8")+"<br>")
       self.wfile.write("</div>")
 
       self.wfile.write("<div class=hint>")
