@@ -19,6 +19,7 @@ div.hint          { padding-bottom: 10px; }
 div.wronganswer   { color: red; }
 div.correctanswer { color: green; }
 div.id            { font-weight: bold; font-color=red; }
+div.statistics    { font-size: small; font-variant: small-caps; text-align:right;}
 
 div.menue         { text-align:left; padding-top:4pt; font-size:14px; border:0 0 0 0; margin:0 0 0 0; }
 a.menue           { color:#222; text-decoration: none; padding:2pt; }

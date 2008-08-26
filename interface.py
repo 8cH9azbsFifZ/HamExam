@@ -126,6 +126,7 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("<div class=question>")
       self.wfile.write(f.question.encode("utf8"))
       self.wfile.write("</div>")
+      self.wfile.write("<div class=statistics>Richtig: "+f.correct+" <br>Falsch: "+f.wrong+"</div>")
 
    def WrongAnswer(self):
       self.SendHeader() 
