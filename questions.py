@@ -4,12 +4,21 @@ from xml.dom import minidom, Node
 import os
 
 class Questions:
+   loud = False
+
    def GetQuestions(self):   
+      if self.loud:
+         print "Get Questions"
+
+      self.GetHints ()
+
       self.questions = []
 
       for q in self.file.getElementsByTagName("question"):
          id = q.getAttribute ("id")
          
+         hint = self.GetHint(id)
+
          answers = []
          for c in q.childNodes:
             if c.nodeType == Node.ELEMENT_NODE:
@@ -31,9 +40,12 @@ class Questions:
                   answer = content
                   answers.append ([answer, correct])
 
-         self.questions.append ([id, textquestion,answers])
+         self.questions.append ([id, textquestion,answers, hint])
 
    def GetHints(self):
+      if self.loud:
+         print "Get hints"
+
       self.hints = []
       for h in self.root.getElementsByTagName ("hint"):
          id = h.getAttribute ("question")
@@ -46,7 +58,19 @@ class Questions:
 
          self.hints.append ([id, strContent])
 
+   def GetHint(self,id):
+      if self.loud:
+         print "Get hint:",id
+
+      for h in self.hints:
+         if h[0] == id:
+            return h[1]
+      return ""
+
    def GetChapters(self):
+      if self.loud:
+         print "Get chapters"
+
       chapters=[]
       for c in self.root.childNodes:
          if c.nodeType == Node.ELEMENT_NODE:
@@ -65,6 +89,9 @@ class Questions:
                      name3 = e.getAttribute("name")
 
    def GetBasicProperties(self):
+      if self.loud:
+         print "Get basic properties"
+
       #self.title = self.root.getAttribute("title")
       #publisher
       #version -published
@@ -73,17 +100,21 @@ class Questions:
       return
 
    def AskQuestion(self,id):
+      if self.loud:
+         print "Ask question:",id
+
       for q in self.questions:
          if q[0] == id:
             break
 
       self.id = id
-      self.question = str(q[1])
+      self.question = q[1]
       self.correct = "a" #FIXME
       self.answera = q[2][0][0][0]
       self.answerb = q[2][1][0][0]
       self.answerc = q[2][2][0][0]
       self.answerd = q[2][3][0][0]
+      self.hint = q[3]
 
    def __init__(self,filename="Questions/questions.xml"):
       self.filename=filename
