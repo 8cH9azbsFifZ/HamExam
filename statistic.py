@@ -73,6 +73,7 @@ class Statistic:
       q.appendChild(qq)
       
    def WriteFile(self):
+      print "Writing statistics file",self.filename
       ss=toprettyxml_fixed(self.root)
       f=open(self.filename,"w")
       print >>f,"<!DOCTYPE AFUTrainerStatistics>"
@@ -80,6 +81,7 @@ class Statistic:
       f.close()
    
    def OpenFile(self):
+      print "Opening statistics file".,self.filename
       self.stat = minidom.parse (self.filename)
       self.root = self.stat.documentElement
 
@@ -89,6 +91,7 @@ class Statistic:
 
 
    def GetStatistics(self):
+      print "Parsing statistics xml"
       self.statistics = []
 
       for q in self.root.getElementsByTagName("question"):
