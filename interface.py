@@ -79,9 +79,14 @@ class MyHandler(BaseHTTPRequestHandler):
          answer = (self.path.split("/")[-1]).replace(".afu","")
          if not f.EvalQuestion (answer):
             self.WrongAnswer()
-         self.StartDisplay()
+         else:
+            self.AskQuestion()
       elif self.path.endswith("hint.afu"):
          self.DisplayHint()
+      elif self.path.endswith("menue.afu"):
+         self.DisplayMenu()
+      elif self.path.endswith("askquestion.afu"):
+         self.AskQuestion()
       else:
          self.StartDisplay()
 
@@ -93,31 +98,43 @@ class MyHandler(BaseHTTPRequestHandler):
       print "Hint:",f.hint
       self.wfile.write ("<html><head><meta http-equiv=refresh content=\"0; URL=/"+f.hint+"\"></head></html>")
 
+   def DisplayQuestion(self):
+      self.wfile.write("<div class=id>"+f.id+"</div>")
+      self.wfile.write("<div class=question>")
+      self.wfile.write(f.question)
+      self.wfile.write("</div>")
+
    def WrongAnswer(self):
-      self.wfile.write("wrong")
+      self.send_response(200)
+      self.send_header('Content-type', 'text/html')
+      self.end_headers()
+      
+      self.base="http://127.0.0.1:8080"
+      self.wfile.write("<html><head></head><body>")
+
+      self.DisplayQuestion()
+
+      self.wfile.write("")
+      
 
    def StartDisplay(self):
       self.send_response(200)
       self.send_header('Content-type',	'text/html')
       self.end_headers()
 
-#<frameset border=0 frameborder=0 framespacing=0 marginwidth=0 rows=70px,*>
-#   <frame name=menue src="./menue.html" scrolling=no noresize>
-#      <frame name=main src="about" scrolling=auto noresize>
-#      </frameset>
-      
-
       self.base="http://127.0.0.1:8080"
 
+      self.wfile.write("<frameset border=0 frameborder=0 framespacing=0 marginwidth=0 rows=70px,*>")
+      self.wfile.write("<frame name=menue src=menue.afu scrolling=no noresize>")
+      self.wfile.write("<frame name=main src=askquestion.afu scrolling=auto noresize>")
+      self.wfile.write("</frameset>")
+
+   def AskQuestion(self):
+      self.base="http://127.0.0.1:8080"
       self.wfile.write("<html><head><base href="+self.base+"/Questions/></head><body>")
 
       f.AskQuestion()
-     
-      self.wfile.write("<div class=id>"+f.id+"</div>")
-
-      self.wfile.write("<div class=question>")
-      self.wfile.write(f.question)
-      self.wfile.write("</div>")
+      self.DisplayQuestion()
 
       self.wfile.write("<div class=answer>")
       self.wfile.write("<a href="+self.base+"/a.afu class=button>A</a>"+f.answera+"<br>")
@@ -131,18 +148,17 @@ class MyHandler(BaseHTTPRequestHandler):
 
       self.wfile.write("</body></html>")
 
-   
-
    def DisplayMenu(self):
       self.send_response(200)
       self.send_header('Content-type', 'text/html')
       self.end_headers()
 
+      self.base="http://127.0.0.1:8080"
       self.stylefile=""
 
       self.wfile.write("<html><head><base target=main><link href="+self.stylefile+" rel=stylesheet type=text/css></head>")
       self.wfile.write("<body><div class=menue>")
-      self.wfile.write("<a class=menue href=>Abfragen</a>")
+      self.wfile.write("<a class=menue href="+self.base+"/askquestion.afu>Abfragen</a>")
       self.wfile.write("</div></body></html>")
       
 
