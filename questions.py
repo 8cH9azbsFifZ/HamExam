@@ -56,7 +56,7 @@ class Questions:
          if content:
             strContent = string.join(content)
 
-         ss = strContent.split("<a href=\"")[1].split("\">")[0]
+         ss = strContent.split("<a href=\"http://")[1].split("\">")[0]
 
          self.hints.append ([id, ss])
 
