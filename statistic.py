@@ -28,18 +28,30 @@ class Statistic:
          ws = q.getAttribute ("ws")
          w = q.getAttribute ("w")
 
-         a_code=[]
-         a_time=[]
-         a_when=[]
-         answers=[a_code,a_time,a_when]
+         answers = []
          for a in q.childNodes:
             if a.nodeType == Node.ELEMENT_NODE:
-               a_code.append (a.getAttribute("answer_code"))
-               a_time.append (a.getAttribute("needed_time"))
-               a_when.append (a.getAttribute("datetime"))
+               code = a.getAttribute("answer_code")
+               time = a.getAttribute("needed_time")
+               when = a.getAttribute("datetime")
+               answers.append ([code,time,when])
 
-         self.staticstics.append ([id, c, cs, ws, w, answers])
- 
+         self.statistics.append ([id, c, cs, ws, w, answers])
+
+   def FindQuestion(self,qid):
+      i = 0
+      for s in self.statistics:
+         if s[0]  == qid:
+            return i
+         i += 1
+      return -1
+
+   def ThisQuestion(self,qid):
+      q = self.FindQuestion (qid)
+      c = self.statistics[q][1]
+      w = self.statistics[q][4]
+      return [c,w]
+
    def Timestamp(self):
       return str(datetime.datetime.today().isoformat()).split(".")[0]
 
@@ -47,3 +59,4 @@ class Statistic:
       self.filename=filename
 
       self.GetStatistics()
+      
