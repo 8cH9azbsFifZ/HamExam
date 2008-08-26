@@ -35,7 +35,7 @@ class Statistic:
          a = [1,2,4,8][(["a","b","c","d"]).index(answer)]
          nt = 15000 # FIXME
       else:
-
+         return
       
       # FIXME
       #qq = q.createElement ("answer_clicked")
