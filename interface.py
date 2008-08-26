@@ -109,7 +109,7 @@ class MyHandler(BaseHTTPRequestHandler):
    def WrongAnswer(self):
       self.SendHeader() 
       self.base="http://127.0.0.1:8080"
-      self.wfile.write("<html><head></head><body>")
+      self.wfile.write("<html><head><base href="+self.base+"/Questions/></head><body>")
       self.wfile.write("<b>Falsche Antwort<b><br>")
       self.DisplayQuestion()
       self.wfile.write("<div class=correctanswer>"+f.answera+"</div>")
