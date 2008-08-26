@@ -100,11 +100,11 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write ("<link href="+self.stylefile+" rel=stylesheet type=text/css>")
       self.wfile.write ("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf8\">")
       
-      self.wfile.write ("<SCRIPT LANGUAGE=JavaScript>")
+      self.wfile.write ("<SCRIPT LANGUAGE=\"JavaScript\">")
       self.wfile.write ("document.onkeydown = eval_key;            ")
       self.wfile.write ("function eval_key (e) {")
       self.wfile.write ("var keycode; if (window.event) keycode = window.event.keyCode; else if (e) keycode = e.which;")
-      self.wfile.write ("if (keycode == 65) {         window.location = \""+self.base+"/a.afu\";")
+      self.wfile.write ("if (keycode == 65) {         window.alert(\"abc\");window.location = \""+self.base+"/a.afu\";")
       self.wfile.write ("} else if (keycode == 67) {  window.location = \""+self.base+"/b.afu\";")
       self.wfile.write ("} else if (keycode == 68) {  window.location = \""+self.base+"/c.afu\";")
       self.wfile.write ("} else if (keycode == 69) {  window.location = \""+self.base+"/d.afu\";")
@@ -172,7 +172,7 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("</div>")
 
       self.wfile.write("<div class=hint>")
-      self.wfile.write("<a href="+self.base+"/hint.afu>Hinweis</a></div>")
+      self.wfile.write("<a href="+self.base+"/hint.afu target=hint>Hinweis</a></div>")
 
       self.wfile.write("</body></html>")
 

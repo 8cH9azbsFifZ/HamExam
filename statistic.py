@@ -65,21 +65,26 @@ class Statistic:
       qq.setAttribute ("needed_time", str(nt))
       q.appendChild(qq)
       
+      self.GetStatistics ()
+      self.WriteFile()
+
+   def WriteFile(self):
       ss=toprettyxml_fixed(self.root)
       f=open(self.filename,"w")
       print >>f,"<!DOCTYPE AFUTrainerStatistics>"
       f.write(ss)
       f.close()
-
-      self.GetStatistics ()
-
-   def GetStatistics(self):
+   
+   def OpenFile(self):
       self.stat = minidom.parse (self.filename)
       self.root = self.stat.documentElement
+
       self.date = self.root.getAttribute ("date")
       self.version = self.root.getAttribute ("version")
       self.name = self.root.getAttribute ("name")
 
+
+   def GetStatistics(self):
       self.statistics = []
 
       for q in self.root.getElementsByTagName("question"):
@@ -122,6 +127,7 @@ class Statistic:
 
    def __init__(self,filename="DL-A-2007.stat.xml"):
       self.filename=filename
-
+      
+      self.OpenFile()
       self.GetStatistics()
       
