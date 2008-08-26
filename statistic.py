@@ -5,8 +5,28 @@ import os
 import datetime
 
 class Statistic:
-   def IncreaseCounter(self, id, how):
-      print "Yeas"
+   def IncreaseCounter(self, qid, how):
+      nq = self.FindQuestion (qid)
+      for q in  self.root.getElementsByTagName("question"):
+         id = q.getAttribute ("id")
+         if id == qid:
+            break
+      
+      id = q.getAttribute ("id")
+      cs = q.getAttribute ("cs")
+      ws = q.getAttribute ("ws")
+      c = int(q.getAttribute ("c"))
+      w = int(q.getAttribute ("w"))
+
+      if how == True:
+         c += 1
+      else:
+         w += 1
+
+      t = self.Timestamp()
+
+
+      print "Yeas",qid,id,c,cs,ws,w,t
       #<question w="0" id="TA101" ws="0" c="6" cs="6" >
       #   <answer_clicked datetime="2007-09-13T02:56:34" answer_code="1" needed_time="14543" />
 
