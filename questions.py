@@ -126,6 +126,8 @@ class Questions:
       self.hint = q[3]
 
    def RealAnswer(self,answer):
+      s=self.series
+      a=["a","b","c","d"]
       realchar = ["a","b","c","d"][[a[s[0]],a[s[1]],a[s[2]],a[s[3]]].index(answer)]
       return realchar
 

@@ -67,14 +67,11 @@ class Statistic:
       
       ss=toprettyxml_fixed(self.root)
       f=open(self.filename,"w")
+      print >>f,"<!DOCTYPE AFUTrainerStatistics>"
       f.write(ss)
       f.close()
 
       self.GetStatistics ()
-
-   def SortShittyXML(self):
-      tree = ET.parse(self.filename)
-
 
    def GetStatistics(self):
       self.stat = minidom.parse (self.filename)

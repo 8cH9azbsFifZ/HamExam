@@ -29,7 +29,7 @@ class Framework:
       else:
          c = False
 
-      self.s.IncreaseCounter (self.id, c, answer)
+      self.s.IncreaseCounter (self.id, c, self.q.RealAnswer(answer))
 
       return c
 
