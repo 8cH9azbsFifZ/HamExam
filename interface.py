@@ -91,12 +91,14 @@ class MyHandler(BaseHTTPRequestHandler):
          self.StartDisplay()
 
    def DisplayHint(self):
+      self.SendHeader() 
+      print "Hint:",f.hint
+      self.wfile.write ("<html><head><meta http-equiv=refresh content=\"0; URL=/"+f.hint+"\"></head></html>")
+
+   def SendHeader(self):
       self.send_response(200)
       self.send_header('Content-type', 'text/html')
       self.end_headers()
-     
-      print "Hint:",f.hint
-      self.wfile.write ("<html><head><meta http-equiv=refresh content=\"0; URL=/"+f.hint+"\"></head></html>")
 
    def DisplayQuestion(self):
       self.wfile.write("<div class=id>"+f.id+"</div>")
@@ -105,23 +107,16 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("</div>")
 
    def WrongAnswer(self):
-      self.send_response(200)
-      self.send_header('Content-type', 'text/html')
-      self.end_headers()
-      
+      self.SendHeader() 
       self.base="http://127.0.0.1:8080"
       self.wfile.write("<html><head></head><body>")
-
+      self.wfile.write("<b>Falsche Antwort<b><br>")
       self.DisplayQuestion()
-
-      self.wfile.write("")
+      self.wfile.write("<div class=correctanswer>"+f.answera+"</div>")
       
 
    def StartDisplay(self):
-      self.send_response(200)
-      self.send_header('Content-type',	'text/html')
-      self.end_headers()
-
+      self.SendHeader()
       self.base="http://127.0.0.1:8080"
 
       self.wfile.write("<frameset border=0 frameborder=0 framespacing=0 marginwidth=0 rows=70px,*>")
@@ -149,10 +144,7 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("</body></html>")
 
    def DisplayMenu(self):
-      self.send_response(200)
-      self.send_header('Content-type', 'text/html')
-      self.end_headers()
-
+      self.SendHeader()
       self.base="http://127.0.0.1:8080"
       self.stylefile=""
 
