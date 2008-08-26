@@ -90,6 +90,14 @@ class MyHandler(BaseHTTPRequestHandler):
       else:
          self.StartDisplay()
 
+   def ShowHead(self):
+      self.base="http://127.0.0.1:8080"
+      
+      self.wfile.write ("<html><head><base href="+self.base+"/Questions/>")
+      self.wfile.write ("<link href="+self.stylefile+" rel=stylesheet type=text/css>")
+      self.wfile.write ("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf8\">")
+      self.wfile.write ("</head><body>")
+            
    def DisplayHint(self):
       self.SendHeader() 
       print "Hint:",f.hint
@@ -103,7 +111,7 @@ class MyHandler(BaseHTTPRequestHandler):
    def DisplayQuestion(self):
       self.wfile.write("<div class=id>"+f.id+"</div>")
       self.wfile.write("<div class=question>")
-      self.wfile.write(f.question)
+      self.wfile.write(f.question.encode("utf8"))
       self.wfile.write("</div>")
 
    def WrongAnswer(self):

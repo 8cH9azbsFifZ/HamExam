@@ -5,7 +5,7 @@ class Framework:
    def AskQuestion(self):
       if self.method == "BadQuestions":
          qid = self.FindBadQuestion()
-      elif self.emthod == "GoodQuestions":
+      elif self.method == "GoodQuestions":
          qid = self.FindGoodQuestion()
       elif self.method == "NewQuestions":
          qid = self.FindNewQuestion()
@@ -48,3 +48,4 @@ class Framework:
    def __init__(self):
       self.q = questions.Questions()
       self.s = statistic.Statistic()
+      self.method = ""
