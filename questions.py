@@ -2,7 +2,6 @@
 import sys, string
 from xml.dom import minidom, Node
 import os
-import numpy
 
 class Questions:
    loud = False
@@ -14,6 +13,7 @@ class Questions:
       self.GetHints ()
 
       self.questions = []
+      self.nquestions = 0
 
       for q in self.file.getElementsByTagName("question"):
          id = q.getAttribute ("id")
@@ -42,9 +42,8 @@ class Questions:
                   answers.append ([answer, correct])
 
          self.questions.append ([id, textquestion,answers, hint])
+         self.nquestions += 1
       
-      self.nquestions = numpy.size (self.questions)
-
    def GetHints(self):
       if self.loud:
          print "Get hints"

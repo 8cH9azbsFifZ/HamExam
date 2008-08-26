@@ -3,7 +3,15 @@ import random as r
 
 class Framework:
    def AskQuestion(self):
-      qid = str("TB305")
+      if self.method == "BadQuestions":
+         qid = self.FindBadQuestion()
+      elif self.emthod == "GoodQuestions":
+         qid = self.FindGoodQuestion()
+      elif self.method == "NewQuestions":
+         qid = self.FindNewQuestion()
+      else:
+         qid = self.FindAnyQuestion()
+
       self.q.AskQuestion (qid)
       self.id = qid
       self.question = self.q.question
@@ -24,9 +32,12 @@ class Framework:
 
       return c
 
-   def FindNewQuestion(self):
+   def FindAnyQuestion(self):
       nq = int (r.random()*self.q.nquestions)
       return self.q.questions[nq][0]
+
+   def FindNewQuestion(self):
+      return
 
    def FindBadQuestion(self):
       return
