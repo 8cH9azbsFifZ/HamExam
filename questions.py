@@ -115,7 +115,8 @@ class Questions:
       self.id = id
       self.question = q[1]
       
-      s = self.Random()
+      self.series = self.Random()
+      s = self.series
       self.correct = ["a","b","c","d"][s.index(0)]
       self.answera = q[2][s[0]][0][0]
       self.answerb = q[2][s[1]][0][0]
@@ -123,6 +124,10 @@ class Questions:
       self.answerd = q[2][s[3]][0][0]
       self.answercorrect = self.answera #FIXME
       self.hint = q[3]
+
+   def RealAnswer(self,answer):
+      realchar = ["a","b","c","d"][[a[s[0]],a[s[1]],a[s[2]],a[s[3]]].index(answer)]
+      return realchar
 
    def Random(self):
       s = []

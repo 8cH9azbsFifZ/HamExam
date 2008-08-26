@@ -4,6 +4,16 @@ from xml.dom import minidom, Node
 import os
 import datetime
 
+from xml.dom.ext import PrettyPrint
+from StringIO import StringIO
+
+def toprettyxml_fixed (node): #, encoding='utf-8'):
+   tmpStream = StringIO()
+   PrettyPrint(node, stream=tmpStream)# , encoding=encoding)
+   return tmpStream.getvalue()
+
+import xml.etree.ElementTree as ET
+
 class Statistic:
    def IncreaseCounter(self, qid, how, answer):
       nq = self.FindQuestion (qid)
@@ -39,27 +49,32 @@ class Statistic:
          w += 1
          ws += 1
       
-      q.setAttribute("c",str(c).encode("utf8"))
-      q.setAttribute("w",str(w).encode("utf8"))
-      q.setAttribute("cs",str(cs).encode("utf8"))
-      q.setAttribute("ws",str(ws).encode("utf8"))
+      q.setAttribute("c",str(c))
+      q.setAttribute("w",str(w))
+      q.setAttribute("cs",str(cs))
+      q.setAttribute("ws",str(ws))
       
 
       t = self.Timestamp()
       a = [1,2,4,8][(["a","b","c","d"]).index(answer)]
       nt = 15000 # FIXME
    
-      qq = self.stat.createElement(u'answer_clicked')
-      qq.setAttribute ("datetime", str(t).encode("utf8"))
-      qq.setAttribute ("answer_code", str(a).encode("utf8"))
-      qq.setAttribute ("needed_time", str(nt).encode("utf8"))
+      qq = self.stat.createElement("answer_clicked")
+      qq.setAttribute ("datetime", str(t))
+      qq.setAttribute ("answer_code", str(a))
+      qq.setAttribute ("needed_time", str(nt))
       q.appendChild(qq)
       
+      ss=toprettyxml_fixed(self.root)
       f=open(self.filename,"w")
-      self.root.writexml(f)
+      f.write(ss)
       f.close()
 
       self.GetStatistics ()
+
+   def SortShittyXML(self):
+      tree = ET.parse(self.filename)
+
 
    def GetStatistics(self):
       self.stat = minidom.parse (self.filename)
