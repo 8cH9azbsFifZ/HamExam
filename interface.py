@@ -1,9 +1,7 @@
 #!/usr/bin/python
-import string,cgi,time
+import string,cgi,time,posixpath, urllib, os
 from os import curdir, sep
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-import posixpath, urllib, os
-
 import framework
 
 class MyHandler(BaseHTTPRequestHandler):
