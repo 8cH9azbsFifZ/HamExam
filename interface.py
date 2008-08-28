@@ -9,15 +9,15 @@ class MyHandler(BaseHTTPRequestHandler):
       if self.path.endswith(".afu"):
          self.AFU()
       else:
-         f = self.send_head()
+         ff = self.send_head()
          if f:
-            self.copyfile(f, self.wfile)
-            f.close()
+            self.copyfile(ff, self.wfile)
+            ff.close()
          
    def do_HEAD(self):
-     f = self.send_head()
-     if f:
-         f.close()
+     ff = self.send_head()
+     if ff:
+         ff.close()
 
    def send_head(self):
       path = self.translate_path(self.path)
@@ -25,14 +25,14 @@ class MyHandler(BaseHTTPRequestHandler):
          self.send_error(403, "Directory listing not supported")
          return None
       try:
-         f = open(path, 'rb')
+         ff = open(path, 'rb')
       except IOError:
          self.send_error(404, "File not found")
          return None
       self.send_response(200)
       self.send_header("Content-type", self.guess_type(path))
       self.end_headers()
-      return f
+      return ff
 
    def translate_path(self, path):
       path = posixpath.normpath(urllib.unquote(path))
@@ -85,13 +85,13 @@ class MyHandler(BaseHTTPRequestHandler):
       elif self.path.endswith("method.afu"):
          self.DisplayMethod()
       elif self.path.endswith("methodNew.afu"):
-         self.f.method = "New"
+         f.method = "New"
          self.StartDisplay()
       elif self.path.endswith("methodBad.afu"):
-         self.f.method = "Bad"
+         f.method = "Bad"
          self.StartDisplay()
       elif self.path.endswith("methodGood.afu"):
-         self.f.method = "Good"
+         f.method = "Good"
          self.StartDisplay()
       elif self.path.endswith("statistic.afu"):
          self.DisplayStatistics()
