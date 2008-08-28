@@ -80,13 +80,11 @@ class MyHandler(BaseHTTPRequestHandler):
             self.WrongAnswer()
          else:
             self.AskQuestion()
-      elif self.path.endswith("hint.afu"):
-         self.DisplayHint()
       elif self.path.endswith("menue.afu"):
          self.DisplayMenu()
       elif self.path.endswith("method.afu"):
          self.DisplayMethod()
-      elif self.path.endswith("statistics.afu"):
+      elif self.path.endswith("statistic.afu"):
          self.DisplayStatistics()
       elif self.path.endswith("askquestion.afu"):
          self.AskQuestion()
@@ -126,10 +124,6 @@ class MyHandler(BaseHTTPRequestHandler):
 
       self.wfile.write ("</head><body>")
             
-   def DisplayHint(self):
-      print "Hint:",f.hint
-      self.wfile.write ("<html><head><meta http-equiv=refresh content=\"0; URL=/"+f.hint+"\"></head></html>")
-
    def SendHeader(self):
       self.send_response(200)
       self.send_header('Content-type', 'text/html')
@@ -179,7 +173,7 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("</div>")
 
       self.wfile.write("<div class=hint>")
-      self.wfile.write("<a href="+base+"/hint.afu target=hint>Hinweis</a></div>")
+      self.wfile.write("<a href="+base+hint_dir+f.hint+" target=hint>Hinweis</a></div>")
 
       self.wfile.write("</body></html>")
 
@@ -206,10 +200,11 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write(upfilecontent[0]);
          
 def main():
-   global f,port,base,stylefile,question_dir
+   global f,port,base,stylefile,question_dir,hint_dir
    port = 8080
    base = "http://127.0.0.1:"+str(port)+"/"
    question_dir = "/TechnikA/www.oliver-saal.de/software/afutrainer/download/"
+   hint_dir = "/TechnikA/"
    stylefile = base+"/style.css"
 
    try:
