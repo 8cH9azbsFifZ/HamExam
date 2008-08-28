@@ -99,25 +99,27 @@ class MyHandler(BaseHTTPRequestHandler):
       return
 
    def DisplayMethod(self):
+      self.ShowHead()
       return
 
-   def ShowHead(self):
+   def ShowHead(self,question=False):
       self.wfile.write ("<html><head><base href="+base+question_dir+">")
       self.wfile.write ("<link href="+stylefile+" rel=stylesheet type=text/css>")
       self.wfile.write ("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf8\">")
       
-      self.wfile.write ("<SCRIPT LANGUAGE=\"JavaScript\">")
-      self.wfile.write ("var inNav = navigator.appVersion.indexOf(\"MSIE\") < 0;")
-      self.wfile.write ("function eval_key (event) {")
-      self.wfile.write ("var key = (inNav==1) ? event.which : event.keyCode;")
-      self.wfile.write ("if (key == 65) {   window.location = \""+base+"/a.afu\";")
-      self.wfile.write ("} else if (key == 66) {  window.location = \""+base+"/b.afu\";")
-      self.wfile.write ("} else if (key == 67) {  window.location = \""+base+"/c.afu\";")
-      self.wfile.write ("} else if (key == 68) {  window.location = \""+base+"/d.afu\";")
-      self.wfile.write ("}")
-      self.wfile.write ("}")
-      self.wfile.write ("document.onkeydown = eval_key;")
-      self.wfile.write ("</script>")
+      if question:
+         self.wfile.write ("<SCRIPT LANGUAGE=\"JavaScript\">")
+         self.wfile.write ("var inNav = navigator.appVersion.indexOf(\"MSIE\") < 0;")
+         self.wfile.write ("function eval_key (event) {")
+         self.wfile.write ("var key = (inNav==1) ? event.which : event.keyCode;")
+         self.wfile.write ("if (key == 65) {   window.location = \""+base+"/a.afu\";")
+         self.wfile.write ("} else if (key == 66) {  window.location = \""+base+"/b.afu\";")
+         self.wfile.write ("} else if (key == 67) {  window.location = \""+base+"/c.afu\";")
+         self.wfile.write ("} else if (key == 68) {  window.location = \""+base+"/d.afu\";")
+         self.wfile.write ("}")
+         self.wfile.write ("}")
+         self.wfile.write ("document.onkeydown = eval_key;")
+         self.wfile.write ("</script>")
 
       self.wfile.write ("</head><body>")
             
@@ -151,7 +153,7 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("</frameset>")
 
    def AskQuestion(self,update=True):
-      self.ShowHead()
+      self.ShowHead(question=True)
       self.wfile.write("<body>")
 
       if update:
