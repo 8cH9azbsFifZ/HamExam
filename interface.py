@@ -96,11 +96,14 @@ class MyHandler(BaseHTTPRequestHandler):
          self.StartDisplay()
 
    def DisplayStatistics(self):
-      return
+      self.ShowHead()
+      self.wfile.write ("<h2>Statistics...</h2>")
 
    def DisplayMethod(self):
       self.ShowHead()
-      return
+      self.wfile.write ("<h2>Abfragemethode</h2>")
+
+      self.wfile.write ("<h2>Fragenkatalog</h2>")
 
    def ShowHead(self,question=False):
       self.wfile.write ("<html><head><base href="+base+question_dir+">")
