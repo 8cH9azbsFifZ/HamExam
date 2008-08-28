@@ -74,7 +74,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
    def AFU(self):
       self.SendHeader()
-      if self.path.endswith("a.afu") or self.path.endswith("b.afu") or self.path.endswith("c.afu") or self.path.endswith("d.afu"):
+      if self.path.endswith("/a.afu") or self.path.endswith("/b.afu") or self.path.endswith("/c.afu") or self.path.endswith("/d.afu"):
          answer = (self.path.split("/")[-1]).replace(".afu","")
          if not f.EvalQuestion (answer):
             self.WrongAnswer()
@@ -84,12 +84,33 @@ class MyHandler(BaseHTTPRequestHandler):
          self.DisplayMenu()
       elif self.path.endswith("method.afu"):
          self.DisplayMethod()
+      elif self.path.endswith("methodNew.afu"):
+         self.f.method = "New"
+         self.StartDisplay()
+      elif self.path.endswith("methodBad.afu"):
+         self.f.method = "Bad"
+         self.StartDisplay()
+      elif self.path.endswith("methodGood.afu"):
+         self.f.method = "Good"
+         self.StartDisplay()
       elif self.path.endswith("statistic.afu"):
          self.DisplayStatistics()
       elif self.path.endswith("askquestion.afu"):
          self.AskQuestion()
       elif self.path.endswith("showquestion.afu"):
          self.AskQuestion(update=False)
+      elif self.path.endswith("catalogTechnikA.afu"):
+         f.close()
+         f = framework.Framework(catalog="TechnikA")
+         self.StartDisplay()
+      elif self.path.endswith("catalogTechnikE.afu"):
+         f.close()
+         f = framework.Framework(catalog="TechnikE")
+         self.StartDisplay()
+      elif self.path.endswith("catalogBetriebAE.afu"):
+         f.close()
+         f = framework.Framework(catalog="BetriebAE")
+         self.StartDisplay()
       else:
          self.StartDisplay()
 
@@ -100,11 +121,21 @@ class MyHandler(BaseHTTPRequestHandler):
    def DisplayMethod(self):
       self.ShowHead()
       self.wfile.write ("<h2>Abfragemethode</h2>")
+      self.wfile.write ("<ul>")
+      self.wfile.write ("<li><a href="+base+"/methodNew.afu>Neue Fragen</a>")
+      self.wfile.write ("<li><a href="+base+"/methodBad.afu>Schwierige Fragen</a>")
+      self.wfile.write ("<li><a href="+base+"/methodGood.afu>Einfache Fragen</a>")
+      self.wfile.write ("</ul>")
 
       self.wfile.write ("<h2>Fragenkatalog</h2>")
+      self.wfile.write ("<ul>")
+      self.wfile.write ("<li><a href="+base+"/catalogTechnikA.afu>Technik A</a>")
+      self.wfile.write ("<li><a href="+base+"/catalogTechnikE.afu>Technik E</a> FIXME ") # FIXME
+      self.wfile.write ("<li><a href="+base+"/catalogBetriebAE.afu>Betrieb AE</a> FIXME ") # FIXME
+      self.wfile.write ("</ul>")
 
    def ShowHead(self,question=False):
-      self.wfile.write ("<html><head><base href="+base+question_dir+">")
+      self.wfile.write ("<html><head><base href="+base+f.question_dir+">")
       self.wfile.write ("<link href="+stylefile+" rel=stylesheet type=text/css>")
       self.wfile.write ("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf8\">")
       
@@ -173,7 +204,7 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("</div>")
 
       self.wfile.write("<div class=hint>")
-      self.wfile.write("<a href="+base+hint_dir+f.hint+" target=hint>Hinweis</a></div>")
+      self.wfile.write("<a href="+base+f.hint_dir+f.hint+" target=hint>Hinweis</a></div>")
 
       self.wfile.write("</body></html>")
 
@@ -200,11 +231,9 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write(upfilecontent[0]);
          
 def main():
-   global f,port,base,stylefile,question_dir,hint_dir
+   global f,port,base,stylefile
    port = 8080
    base = "http://127.0.0.1:"+str(port)+"/"
-   question_dir = "/TechnikA/www.oliver-saal.de/software/afutrainer/download/"
-   hint_dir = "/TechnikA/"
    stylefile = base+"/style.css"
 
    try:

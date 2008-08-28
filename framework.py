@@ -57,14 +57,15 @@ class Framework:
 
    def __init__(self,method="",catalog="TechnikA"):
       if catalog == "TechnikA":
-         quest = "TechnikA/www.oliver-saal.de/software/afutrainer/download/questions.xml"
          stat = "TechnikA/DL-A-2007.stat.xml"
       elif catalog == "TechnikE":
-         quest = "TechnikE/www.oliver-saal.de/software/afutrainer/download/questions.xml"
          stat = "TechnikE/DL-E-2007.stat.xml"
       elif catalog == "BetriebAE":
-         quest = "TechnikA/www.oliver-saal.de/software/afutrainer/download/questions.xml"
          stat = "BetriesAE/FIXMEtat.xml" #FIXME
+   
+      self.question_dir = catalog+"/www.oliver-saal.de/software/afutrainer/download/"
+      self.hint_dir = catalog+"/"
+      quest = self.question_dir + "questions.xml"
 
       self.q = questions.Questions(filename=quest)
       self.s = statistic.Statistic(filename=stat)
