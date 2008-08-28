@@ -27,3 +27,4 @@ How to use:
 ===========
 (1) Start interface.py
 (2) Browse to http://localhost:8080/afu.afu
+(3) Stop interface with CTRL+C 
