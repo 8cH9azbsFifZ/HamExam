@@ -93,6 +93,8 @@ dd () {
    rm *aqz
    cd ../../../../
 
+   #www.dj4uf.de/css/oza12.css
+
    cd ..
 
    tar cvjf Data_$d.tar.bz2 $d
