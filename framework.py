@@ -38,13 +38,16 @@ class Framework:
       return self.q.questions[nq][0]
 
    def FindNewQuestion(self):
-      return
+      nq = r.randint(0,self.s.nnew)
+      return self.s.newquestion[nq][0]
 
    def FindBadQuestion(self):
-      return
+      nq = r.randint(0,self.s.nbad)
+      return self.s.badquestion[nq][0]
 
    def FindGoodQuestion(self):
-      return
+      nq = r.randint(0,self.s.ngood)
+      return self.s.goodquestion[nq][0]
 
    def Close(self):
       self.s.WriteFile()

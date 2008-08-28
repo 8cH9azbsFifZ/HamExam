@@ -71,6 +71,8 @@ class Statistic:
       qq.setAttribute ("answer_code", str(a))
       qq.setAttribute ("needed_time", str(nt))
       q.appendChild(qq)
+
+      # FIXME: UPDATE QUESTION PRIORITIES
       
    def WriteFile(self):
       print "Writing statistics file",self.filename
@@ -98,6 +100,9 @@ class Statistic:
       self.new = []
       self.good = []
       self.bad = []
+      self.nnew = 0
+      self.ngood = 0
+      self.nbad = 0
 
       for q in self.root.getElementsByTagName("question"):
          id = q.getAttribute ("id")
@@ -113,10 +118,13 @@ class Statistic:
 
          if rr >= self.ratio:
             self.good.append (id)
+            self.ngood += 1
          elif rr >= 0:
             self.bad.append (id)
+            self.nbad += 1
          else:
             self.new.append (id)
+            self.nnew += 1
 
          answers = []
          for a in q.childNodes:
