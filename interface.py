@@ -73,6 +73,7 @@ class MyHandler(BaseHTTPRequestHandler):
       }
 
    def AFU(self):
+      self.SendHeader()
       if self.path.endswith("a.afu") or self.path.endswith("b.afu") or self.path.endswith("c.afu") or self.path.endswith("d.afu"):
          answer = (self.path.split("/")[-1]).replace(".afu","")
          if not f.EvalQuestion (answer):
@@ -83,12 +84,22 @@ class MyHandler(BaseHTTPRequestHandler):
          self.DisplayHint()
       elif self.path.endswith("menue.afu"):
          self.DisplayMenu()
+      elif self.path.endswith("method.afu"):
+         self.DisplayMethod()
+      elif self.path.endswith("statistics.afu"):
+         self.DisplayStatistics()
       elif self.path.endswith("askquestion.afu"):
          self.AskQuestion()
       elif self.path.endswith("showquestion.afu"):
          self.AskQuestion(update=False)
       else:
          self.StartDisplay()
+
+   def DisplayStatistics(self):
+      return
+
+   def DisplayMethod(self):
+      return
 
    def ShowHead(self):
       self.wfile.write ("<html><head><base href="+base+question_dir+">")
@@ -111,7 +122,6 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write ("</head><body>")
             
    def DisplayHint(self):
-      self.SendHeader() 
       print "Hint:",f.hint
       self.wfile.write ("<html><head><meta http-equiv=refresh content=\"0; URL=/"+f.hint+"\"></head></html>")
 
@@ -128,7 +138,6 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("<div class=statistics>Richtig: "+f.correct+" <br>Falsch: "+f.wrong+"</div>")
 
    def WrongAnswer(self):
-      self.SendHeader() 
       self.ShowHead()
       self.wfile.write("<div class=wronganswer>Falsche Antwort</div>")
       self.DisplayQuestion()
@@ -136,8 +145,6 @@ class MyHandler(BaseHTTPRequestHandler):
       
 
    def StartDisplay(self):
-      self.SendHeader()
-
       self.wfile.write("<frameset border=0 frameborder=0 framespacing=0 marginwidth=0 rows=30px,*>")
       self.wfile.write("<frame name=menue src=menue.afu scrolling=no noresize>")
       self.wfile.write("<frame name=main src=askquestion.afu scrolling=auto noresize>")
@@ -172,12 +179,9 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("</body></html>")
 
    def DisplayMenu(self):
-      self.SendHeader()
-
       self.wfile.write("<html><head><base target=main><link href="+stylefile+" rel=stylesheet type=text/css></head>")
       self.wfile.write("<body class=menue><div class=menue>")
       self.wfile.write("<a class=menue href="+base+"/askquestion.afu>Abfragen</a>")
-      self.wfile.write("<a class=menue href="+base+"/showquestion.afu>Zur&uuml;ck zur Frage</a>")
       self.wfile.write("<a class=menue href="+base+"/method.afu>Abfragemethode</a>")
       self.wfile.write("<a class=menue href="+base+"/statistic.afu>Statistik</a>")
       self.wfile.write("</div></body></html>")
