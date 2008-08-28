@@ -94,12 +94,30 @@ class Statistic:
       print "Parsing statistics xml"
       self.statistics = []
 
+      self.priority = []
+      self.ratio = .75
+      self.new = 0
+      self.good = 1
+      self.bad = 2
+
       for q in self.root.getElementsByTagName("question"):
          id = q.getAttribute ("id")
          c = q.getAttribute ("c") 
          cs = q.getAttribute ("cs")
          ws = q.getAttribute ("ws")
          w = q.getAttribute ("w")
+
+         if ws > 0:
+            rr = 1.*cs/ws
+         else:
+            rr = .5
+
+         if rr >= self.ratio:
+            self.priority = self.good
+         elif rr >= 0:
+            self.priority = self.bad
+         else:
+            self.priority = self.new
 
          answers = []
          for a in q.childNodes:
@@ -137,4 +155,3 @@ class Statistic:
       
       self.OpenFile()
       self.GetStatistics()
-      
