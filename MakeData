@@ -79,13 +79,26 @@ BNETZA_AE="http://www.bundesnetzagentur.de/media/archive/7830.pdf"
 BNETZA_E="http://www.bundesnetzagentur.de/media/archive/9014.pdf"
 
 
-mkdir TechnikA TechnikE BetriebAE
+dd () {
+   d=$1
+   shift
+   urls=$@
 
-cd TechnikA; wget -p -k $BNETZA_A $DJ4UF_A $QA_A; cd ..;
-cd TechnikE; wget -p -k $BNETZA_E $DJ4UF_E $QA_E; cd ..;
-cd BetriebAE; wget -p -k $BNETZA_AE $DJ4UF_AE $QA_AE; cd ..;
+   [[ -e $d ]]  || mkdir $d
+   cd $d
 
-tar cvjf Data_TechnikA.tar.bz2 TechnikA
-tar cvjf Data_TechnikE.tar.bz2 TechnikE
-tar cvjf Data_BetriebAE.tar.bz2 BetriebAE
+   #wget -p -k $urls
+   cd www.oliver-saal.de/software/afutrainer/download
+   unzip -o *aqz 
+   rm *aqz
+   cd ../../../../
+
+   cd ..
+
+   tar cvjf Data_$d.tar.bz2 $d
+}
+   
+dd TechnikA $BNETZA_A $DJ4UF_A $QA_A
+dd TechnikE $BNETZA_E $DJ4UF_E $QA_E
+dd BetriebAE $BNETZA_AE $DJ4UF_AE $QA_AE
 
