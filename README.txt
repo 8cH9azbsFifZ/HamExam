@@ -5,6 +5,7 @@ only intended as a cheat sheet for creating your own personal copy of the
 downloadable stuff in the web. In particular I'm not responsible, what you 
 could do with it!
 
+
 (1) The hints page is provided with permission of E. Moltrecht. No further
     redistribution (in particular making money with it) is allowed.
 
@@ -13,3 +14,8 @@ could do with it!
 (2) The "Fragenkatalog" comes from the BNetzA. 
 
 (3) The QA catalog comes from the webpage of O. Saal.
+
+
+Note to Win***ws users: 
+(1) Install cygwin to run the MakeData script; optionally drop me a mail
+    (gerolf@ziegenhain.com) and I may send you a ready-to-use copy of the data files.
