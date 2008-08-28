@@ -1,3 +1,5 @@
+Installation Notes:
+===================
 Nothing to say; except the Copyright stuff! By calling the MakeData script
 you accept the respective copyrights; for further informations please have 
 a look at the original sources (as provided in the script). The script is
@@ -19,3 +21,9 @@ could do with it!
 Note to Win***ws users: 
 (1) Install cygwin to run the MakeData script; optionally drop me a mail
     (gerolf@ziegenhain.com) and I may send you a ready-to-use copy of the data files.
+
+
+How to use:
+===========
+(1) Start interface.py
+(2) Browse to http://localhost:8080/afu.afu

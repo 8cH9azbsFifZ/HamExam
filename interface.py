@@ -91,7 +91,7 @@ class MyHandler(BaseHTTPRequestHandler):
          self.StartDisplay()
 
    def ShowHead(self):
-      self.wfile.write ("<html><head><base href="+base+"/Questions/>")
+      self.wfile.write ("<html><head><base href="+base+question_dir)
       self.wfile.write ("<link href="+stylefile+" rel=stylesheet type=text/css>")
       self.wfile.write ("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf8\">")
       
@@ -200,6 +200,7 @@ def main():
    global f,port,base,stylefile
    port = 8080
    base = "http://127.0.0.1:"+str(port)+"/"
+   question_dir = "/TechnikA/www.oliver-saal.de/software/afutrainer/download/"
    stylefile = base+"/style.css"
 
    try:
