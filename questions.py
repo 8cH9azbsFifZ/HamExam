@@ -149,8 +149,3 @@ class Questions:
       self.root = self.file.documentElement
 
       self.GetQuestions()
-
-
-#q = Questions()
-
-#q.AskQuestion("TB305")

@@ -55,7 +55,17 @@ class Framework:
    def Close(self):
       self.s.WriteFile()
 
-   def __init__(self,method=""):
-      self.q = questions.Questions()
-      self.s = statistic.Statistic()
+   def __init__(self,method="",catalog="TechnikA"):
+      if catalog == "TechnikA":
+         quest = "TechnikA/www.oliver-saal.de/software/afutrainer/download/questions.xml"
+         stat = "TechnikA/DL-A-2007.stat.xml"
+      elif catalog == "TechnikE":
+         quest = "TechnikE/www.oliver-saal.de/software/afutrainer/download/questions.xml"
+         stat = "TechnikE/DL-E-2007.stat.xml"
+      elif catalog == "BetriebAE":
+         quest = "TechnikA/www.oliver-saal.de/software/afutrainer/download/questions.xml"
+         stat = "BetriesAE/FIXMEtat.xml" #FIXME
+
+      self.q = questions.Questions(filename=quest)
+      self.s = statistic.Statistic(filename=stat)
       self.method = method
