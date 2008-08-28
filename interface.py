@@ -90,6 +90,9 @@ class MyHandler(BaseHTTPRequestHandler):
       elif self.path.endswith("methodBad.afu"):
          f.Method ("BadQuestions")
          self.AskQuestion()
+      elif self.path.endswith("methodAny.afu"):
+         f.Method ("AnyQuestions")
+         self.AskQuestion()
       elif self.path.endswith("methodGood.afu"):
          f.Method ("GoodQuestions")
          self.AskQuestion()
@@ -122,6 +125,7 @@ class MyHandler(BaseHTTPRequestHandler):
       self.ShowHead()
       self.wfile.write ("<h2>Abfragemethode</h2>")
       self.wfile.write ("<ul>")
+      self.wfile.write ("<li><a href="+base+"/methodAny.afu>Irgendwelche Fragen</a>")
       self.wfile.write ("<li><a href="+base+"/methodNew.afu>Neue Fragen</a>")
       self.wfile.write ("<li><a href="+base+"/methodBad.afu>Schwierige Fragen</a>")
       self.wfile.write ("<li><a href="+base+"/methodGood.afu>Einfache Fragen</a>")

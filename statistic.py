@@ -113,12 +113,8 @@ class Statistic:
 
          if float(ws) > 0.:
             rr = float(cs)/float(ws)
-         elif float(ws) == 0 and float(cs) == 0:
-            rr = -1
-         elif float(ws) == 0:
-            rr = .5
          else:
-            rr = -1
+            rr = 0
 
          if rr >= self.ratio:
             self.goodquestion.append (id)
@@ -126,7 +122,7 @@ class Statistic:
          elif rr >= 0:
             self.badquestion.append (id)
             self.nbadquestion += 1
-         else:
+         else: # never reache # never reachedd
             self.newquestion.append (id)
             self.nnewquestion += 1
 

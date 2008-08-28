@@ -4,13 +4,11 @@ import random as r
 class Framework:
    def AskQuestion(self):
       if self.method == "BadQuestions":
-         #FIXME
+         print "Bad question"
          qid = self.FindBadQuestion()
       elif self.method == "GoodQuestions":
-         #FIXME
          qid = self.FindGoodQuestion()
       elif self.method == "NewQuestions":
-         #FIXME
          qid = self.FindNewQuestion()
       else:
          qid = self.FindAnyQuestion()
@@ -66,7 +64,7 @@ class Framework:
                if not (q[0] in self.s.newquestion):
                   self.s.newquestion.append (q[0])
                   self.s.nnewquestion+=1
-      print self.q.nquestions,self.s.ngoodquestion,self.s.nbadquestion,self.s.nnewquestion
+      print "total, good, bad, new:",self.q.nquestions,self.s.ngoodquestion,self.s.nbadquestion,self.s.nnewquestion
 
    def __init__(self,method="",catalog="TechnikA"):
       if catalog == "TechnikA":
