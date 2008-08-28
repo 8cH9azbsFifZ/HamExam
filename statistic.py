@@ -94,11 +94,10 @@ class Statistic:
       print "Parsing statistics xml"
       self.statistics = []
 
-      self.priority = []
       self.ratio = .75
-      self.new = 0
-      self.good = 1
-      self.bad = 2
+      self.new = []
+      self.good = []
+      self.bad = []
 
       for q in self.root.getElementsByTagName("question"):
          id = q.getAttribute ("id")
@@ -113,11 +112,11 @@ class Statistic:
             rr = .5
 
          if rr >= self.ratio:
-            self.priority = self.good
+            self.good.append (id)
          elif rr >= 0:
-            self.priority = self.bad
+            self.bad.append (id)
          else:
-            self.priority = self.new
+            self.new.append (id)
 
          answers = []
          for a in q.childNodes:
