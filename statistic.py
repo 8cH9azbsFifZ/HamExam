@@ -111,8 +111,8 @@ class Statistic:
          ws = q.getAttribute ("ws")
          w = q.getAttribute ("w")
 
-         if ws > 0:
-            rr = 1.*cs/ws
+         if float(ws) > 0.:
+            rr = float(cs)/float(ws)
          else:
             rr = .5
 
