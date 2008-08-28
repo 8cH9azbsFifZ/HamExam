@@ -136,6 +136,9 @@ class Statistic:
 
          self.statistics.append ([id, c, cs, ws, w, answers])
 
+   def GetPriority(self,qid):
+      return
+
    def FindQuestion(self,qid):
       i = 0
       for s in self.statistics:
@@ -149,10 +152,14 @@ class Statistic:
       if q >= 0:
          c = self.statistics[q][1]
          w = self.statistics[q][4]
+         cs = self.statistics[q][2]
+         ws = self.statistics[q][3]
       else:
          c=str(0)
          w=str(0)
-      return [c,w]
+         cs=str(0)
+         ws=str(0)
+      return [c,w,cs,ws]
 
    def Timestamp(self):
       return str(datetime.datetime.today().isoformat()).split(".")[0]

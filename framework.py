@@ -22,7 +22,7 @@ class Framework:
       self.answerd = self.q.answerd
       self.answercorrect = self.q.answercorrect
       self.hint = self.q.hint
-      self.correct, self.wrong = self.s.ThisQuestion (self.id)
+      self.correct, self.wrong, self.correct_successive, self.wrong_successive = self.s.ThisQuestion (self.id)
 
    def EvalQuestion(self, answer):
       if self.q.correct == answer:
