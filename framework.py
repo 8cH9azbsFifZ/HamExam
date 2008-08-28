@@ -36,24 +36,37 @@ class Framework:
 
       return c
 
+   def Method(self,method="AnyQuestion"):
+      self.method=method
+
    def FindAnyQuestion(self):
-      nq = int (r.random()*self.q.nquestions)
+      nq = r.randint(0,self.q.nquestions)
       return self.q.questions[nq][0]
 
    def FindNewQuestion(self):
-      nq = r.randint(0,self.s.nnewquestion)
+      nq = r.randint(0,self.s.nnewquestion-1)
       return self.s.newquestion[nq]
 
    def FindBadQuestion(self):
-      nq = r.randint(0,self.s.nbadquestion)
+      nq = r.randint(0,self.s.nbadquestion-1)
       return self.s.badquestion[nq]
 
    def FindGoodQuestion(self):
-      nq = r.randint(0,self.s.ngoodquestion)
+      nq = r.randint(0,self.s.ngoodquestion-1)
       return self.s.goodquestion[nq]
 
    def Close(self):
       self.s.WriteFile()
+
+   def CategorizeQuestions(self):
+      print "Categorize questions"
+      for q in self.q.questions:
+         if not (q[0] in self.s.goodquestion):
+            if not (q[0] in self.s.badquestion):
+               if not (q[0] in self.s.newquestion):
+                  self.s.newquestion.append (q[0])
+                  self.s.nnewquestion+=1
+      print self.q.nquestions,self.s.ngoodquestion,self.s.nbadquestion,self.s.nnewquestion
 
    def __init__(self,method="",catalog="TechnikA"):
       if catalog == "TechnikA":
@@ -70,3 +83,4 @@ class Framework:
       self.q = questions.Questions(filename=quest)
       self.s = statistic.Statistic(filename=stat)
       self.method = method
+      self.CategorizeQuestions()

@@ -85,14 +85,14 @@ class MyHandler(BaseHTTPRequestHandler):
       elif self.path.endswith("method.afu"):
          self.DisplayMethod()
       elif self.path.endswith("methodNew.afu"):
-         f.method = "New"
-         self.StartDisplay()
+         f.Method ("NewQuestions")
+         self.AskQuestion()
       elif self.path.endswith("methodBad.afu"):
-         f.method = "Bad"
-         self.StartDisplay()
+         f.Method ("BadQuestions")
+         self.AskQuestion()
       elif self.path.endswith("methodGood.afu"):
-         f.method = "Good"
-         self.StartDisplay()
+         f.Method ("GoodQuestions")
+         self.AskQuestion()
       elif self.path.endswith("statistic.afu"):
          self.DisplayStatistics()
       elif self.path.endswith("askquestion.afu"):
@@ -100,16 +100,16 @@ class MyHandler(BaseHTTPRequestHandler):
       elif self.path.endswith("showquestion.afu"):
          self.AskQuestion(update=False)
       elif self.path.endswith("catalogTechnikA.afu"):
-         f.close()
-         f = framework.Framework(catalog="TechnikA")
+         #f.close()
+         #f = framework.Framework(catalog="TechnikA")
          self.StartDisplay()
       elif self.path.endswith("catalogTechnikE.afu"):
-         f.close()
-         f = framework.Framework(catalog="TechnikE")
+         #f.close()
+         #f = framework.Framework(catalog="TechnikE")
          self.StartDisplay()
       elif self.path.endswith("catalogBetriebAE.afu"):
-         f.close()
-         f = framework.Framework(catalog="BetriebAE")
+         #f.close()
+         #f = framework.Framework(catalog="BetriebAE")
          self.StartDisplay()
       else:
          self.StartDisplay()

@@ -113,8 +113,12 @@ class Statistic:
 
          if float(ws) > 0.:
             rr = float(cs)/float(ws)
-         else:
+         elif float(ws) == 0 and float(cs) == 0:
+            rr = -1
+         elif float(ws) == 0:
             rr = .5
+         else:
+            rr = -1
 
          if rr >= self.ratio:
             self.goodquestion.append (id)
