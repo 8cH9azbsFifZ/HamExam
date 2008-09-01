@@ -49,16 +49,16 @@ class Framework:
       self.method=method
 
    def FindAnyQuestion(self):
-      return r.sample(self.q.questions,1)
+      return r.sample(self.q.questions,1)[0]
 
    def FindNewQuestion(self):
-      return r.sample(self.s.newquestion,1)
+      return r.sample(self.s.newquestion,1)[0]
 
    def FindBadQuestion(self):
-      return r.sample(self.s.badquestion,1)
+      return r.sample(self.s.badquestion,1)[0]
 
    def FindGoodQuestion(self):
-      return r.sample(self.s.newquestion,1)
+      return r.sample(self.s.newquestion,1)[0]
 
    def Close(self):
       self.s.WriteFile()
@@ -70,8 +70,7 @@ class Framework:
             if not (q[0] in self.s.badquestion):
                if not (q[0] in self.s.newquestion):
                   self.s.newquestion.append (q[0])
-                  self.s.nnewquestion+=1
-      print "total, good, bad, new:",self.q.nquestions,self.s.ngoodquestion,self.s.nbadquestion,self.s.nnewquestion
+      print "total, good, bad, new:",len(self.q.questions),len(self.s.goodquestion),len(self.s.badquestion),len(self.s.newquestion)
 
    def __init__(self,method="BadQuestions",catalog="TechnikA"):
       if catalog == "TechnikA":

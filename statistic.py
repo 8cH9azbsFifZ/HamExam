@@ -99,9 +99,11 @@ class Statistic:
       self.statistics = []
 
       self.ratio = .75
+      self.mincorrect = 5.
       self.newquestion = []
       self.goodquestion = []
       self.badquestion = []
+      norm = 1./self.mincorrect
 
       for q in self.root.getElementsByTagName("question"):
          id = q.getAttribute ("id")
@@ -111,15 +113,18 @@ class Statistic:
          w = q.getAttribute ("w")
 
          if float(ws) > 0.:
-            rr = float(cs)/float(ws)
+            rr = 0.
          else:
-            rr = 0
+            rr = float(cs)*norm
 
          if rr >= self.ratio:
+            print "Good", rr, "w",ws, "c",cs
             self.goodquestion.append (id)
          elif rr >= 0:
+            print "Bad",rr,"w",ws,"c",cs
             self.badquestion.append (id)
          else: # never reache # never reachedd
+            print "New",rr,"w",ws,"c",cs
             self.newquestion.append (id)
 
          answers = []
