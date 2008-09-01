@@ -66,7 +66,7 @@ class Statistic:
 
       t = self.Timestamp()
       a = [1,2,4,8][(["a","b","c","d"]).index(answer)]
-      nt = time*1000.
+      nt = int(time*1000)
    
       qq = self.stat.createElement("answer_clicked")
       qq.setAttribute ("datetime", str(t))

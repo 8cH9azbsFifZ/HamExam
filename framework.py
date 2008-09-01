@@ -37,7 +37,7 @@ class Framework:
       print "Correct was:",self.q.correct
 
       self.time1 = time.time()
-      dt = int (self.time1-self.time0)      
+      dt = self.time1-self.time0
 
       self.s.IncreaseCounter (self.id, c, self.q.RealAnswer(answer), dt)
 
