@@ -118,13 +118,10 @@ class Statistic:
             rr = float(cs)*norm
 
          if rr >= self.ratio:
-            print "Good", rr, "w",ws, "c",cs
             self.goodquestion.append (id)
          elif rr >= 0:
-            print "Bad",rr,"w",ws,"c",cs
             self.badquestion.append (id)
          else: # never reache # never reachedd
-            print "New",rr,"w",ws,"c",cs
             self.newquestion.append (id)
 
          answers = []

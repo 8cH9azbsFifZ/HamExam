@@ -42,7 +42,7 @@ class Questions:
                   answer = content
                   answers.append ([answer, correct])
 
-         self.questions.append ([id, textquestion,answers, hint])
+         self.questions.append ([id, textquestion, answers, hint])
          self.nquestions += 1
       
    def GetHints(self):
@@ -117,13 +117,26 @@ class Questions:
       
       self.series = self.Random()
       s = self.series
-      self.correct = ["a","b","c","d"][s.index(0)]
+
       self.answera = q[2][s[0]][0][0]
       self.answerb = q[2][s[1]][0][0]
       self.answerc = q[2][s[2]][0][0]
       self.answerd = q[2][s[3]][0][0]
-      self.answercorrect = self.answera #FIXME
-      self.hint = q[3]
+
+      if q[2][0][1] == True:
+         self.correct = ["a","b","c","d"][s.index(0)]
+         self.answercorrect = self.answera
+      elif q[2][1][1] == True:
+         self.correct = ["a","b","c","d"][s.index(1)]
+         self.answercorrect = self.answerb
+      elif q[2][2][1] == True:
+         self.correct = ["a","b","c","d"][s.index(2)]
+         self.answercorrect = self.answerc
+      elif q[2][3][1] == True:
+         self.correct = ["a","b","c","d"][s.index(3)]
+         self.answercorrect = self.answerd
+
+     self.hint = q[3]
 
    def RealAnswer(self,answer):
       s=self.series
