@@ -16,7 +16,7 @@ class Framework:
       else:
          qid = self.FindAnyQuestion()
 
-      qid = "TI109" #"TD218"
+      qid = "TE320" #"TD218"
       self.q.AskQuestion (qid)
       self.id = qid
       self.question = self.q.question

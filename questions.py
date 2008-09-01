@@ -126,19 +126,17 @@ class Questions:
       if q[2][0][1] == True:
          self.correct = ["a","b","c","d"][s.index(0)]
          self.answercorrect = q[2][0][0][0]
+      elif q[2][1][1] == True:
+         self.correct = ["a","b","c","d"][s.index(1)]
+         self.answercorrect = q[2][1][0][0]
+      elif q[2][2][1] == True:
+         self.correct = ["a","b","c","d"][s.index(2)]
+         self.answercorrect = q[2][2][0][0]
+      elif q[2][3][1] == True:
+         self.correct = ["a","b","c","d"][s.index(3)]
+         self.answercorrect = q[2][3][0][0]
       else:
-         print "Answer A was not right, as assumed..."
-#      elif q[2][1][1] == True:
-#         self.correct = ["a","b","c","d"][s.index(1)]
-#         self.answercorrect = self.answerb
-#      elif q[2][2][1] == True:
-#         self.correct = ["a","b","c","d"][s.index(2)]
-#         self.answercorrect = self.answerc
-#      elif q[2][3][1] == True:
-#         self.correct = ["a","b","c","d"][s.index(3)]
-#         self.answercorrect = self.answerd
-#      else:
-#         print "No answer is right?"
+         print "No answer is right?"
 
       self.hint = q[3]
 
