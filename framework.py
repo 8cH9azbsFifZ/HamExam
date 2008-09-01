@@ -8,8 +8,10 @@ class Framework:
          print "Bad question"
          qid = self.FindBadQuestion()
       elif self.method == "GoodQuestions":
+         print "Good questions"
          qid = self.FindGoodQuestion()
       elif self.method == "NewQuestions":
+         print "New qurstion"
          qid = self.FindNewQuestion()
       else:
          qid = self.FindAnyQuestion()
@@ -47,20 +49,16 @@ class Framework:
       self.method=method
 
    def FindAnyQuestion(self):
-      nq = r.randint(0,self.q.nquestions)
-      return self.q.questions[nq][0]
+      return r.sample(self.q.questions,1)
 
    def FindNewQuestion(self):
-      nq = r.randint(0,self.s.nnewquestion-1)
-      return self.s.newquestion[nq]
+      return r.sample(self.s.newquestion,1)
 
    def FindBadQuestion(self):
-      nq = r.randint(0,self.s.nbadquestion-1)
-      return self.s.badquestion[nq]
+      return r.sample(self.s.badquestion,1)
 
    def FindGoodQuestion(self):
-      nq = r.randint(0,self.s.ngoodquestion-1)
-      return self.s.goodquestion[nq]
+      return r.sample(self.s.newquestion,1)
 
    def Close(self):
       self.s.WriteFile()
@@ -75,7 +73,7 @@ class Framework:
                   self.s.nnewquestion+=1
       print "total, good, bad, new:",self.q.nquestions,self.s.ngoodquestion,self.s.nbadquestion,self.s.nnewquestion
 
-   def __init__(self,method="",catalog="TechnikA"):
+   def __init__(self,method="BadQuestions",catalog="TechnikA"):
       if catalog == "TechnikA":
          stat = "TechnikA/DL-A-2007.stat.xml"
       elif catalog == "TechnikE":

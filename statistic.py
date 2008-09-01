@@ -102,9 +102,6 @@ class Statistic:
       self.newquestion = []
       self.goodquestion = []
       self.badquestion = []
-      self.nnewquestion = 0
-      self.ngoodquestion = 0
-      self.nbadquestion = 0
 
       for q in self.root.getElementsByTagName("question"):
          id = q.getAttribute ("id")
@@ -120,13 +117,10 @@ class Statistic:
 
          if rr >= self.ratio:
             self.goodquestion.append (id)
-            self.ngoodquestion += 1
          elif rr >= 0:
             self.badquestion.append (id)
-            self.nbadquestion += 1
          else: # never reache # never reachedd
             self.newquestion.append (id)
-            self.nnewquestion += 1
 
          answers = []
          for a in q.childNodes:

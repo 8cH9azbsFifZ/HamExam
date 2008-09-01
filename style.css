@@ -1,5 +1,5 @@
-body              {  left:2.5%; right:2.5%; position:absolute; COLOR:#222; background: white; TEXT-ALIGN: left; FONT-FAMILY: "Minion Pro", Georgia, "Times New Roman", Times, serif; FONT-SIZE: 14px; }
-body.menue        {  left:2.5%; right:2.5%; position:absolute; COLOR:white; background: #1E90FF; TEXT-ALIGN: left; FONT-FAMILY: "Minion Pro", Georgia, "Times New Roman", Times, serif; FONT-SIZE: 14px; }
+body              {  left:2.5%; right:2.5%; position:absolute; COLOR:#222; background: white; FONT-FAMILY: "Minion Pro", Georgia, "Times New Roman", Times, serif; FONT-SIZE: 14px; }
+body.menue        {  left:2.5%; right:2.5%; position:absolute; COLOR:white; background: #1E90FF; FONT-FAMILY: "Minion Pro", Georgia, "Times New Roman", Times, serif; FONT-SIZE: 14px; }
 
 img   { border:0; }
  
