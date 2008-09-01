@@ -1,7 +1,7 @@
 #!/bin/sh
 
-QA_A="http://www.oliver-saal.de/software/afutrainer/download/DL%20Technik%20Klasse%20A%202007.aqz"
-QA_E="http://www.oliver-saal.de/software/afutrainer/download/DL%20Technik%20Klasse%20E%202007.aqz"
+QA_E="http://www.oliver-saal.de/software/afutrainer/download/DL%20Technik%20Klasse%20A%202007.aqz"
+QA_A="http://www.oliver-saal.de/software/afutrainer/download/DL%20Technik%20Klasse%20E%202007.aqz"
 QA_AE="http://www.oliver-saal.de/software/afutrainer/download/DL%20Betriebstechnik%20und%20Vorschriften%202007.aqz"
 
 
