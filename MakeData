@@ -1,7 +1,7 @@
 #!/bin/sh
 
-QA_E="http://www.oliver-saal.de/software/afutrainer/download/DL%20Technik%20Klasse%20A%202007.aqz"
-QA_A="http://www.oliver-saal.de/software/afutrainer/download/DL%20Technik%20Klasse%20E%202007.aqz"
+QA_A="http://www.oliver-saal.de/software/afutrainer/download/DL%20Technik%20Klasse%20A%202007.aqz"
+QA_E="http://www.oliver-saal.de/software/afutrainer/download/DL%20Technik%20Klasse%20E%202007.aqz"
 QA_AE="http://www.oliver-saal.de/software/afutrainer/download/DL%20Betriebstechnik%20und%20Vorschriften%202007.aqz"
 
 
@@ -74,9 +74,9 @@ http://www.dj4uf.de/lehrg/tipps.html
 http://www.dj4uf.de/lehrg/tipps.html
 "
 
-BNETZA_A="http://www.bundesnetzagentur.de/media/archive/7637.pdf"
+BNETZA_E="http://www.bundesnetzagentur.de/media/archive/7637.pdf"
 BNETZA_AE="http://www.bundesnetzagentur.de/media/archive/7830.pdf"
-BNETZA_E="http://www.bundesnetzagentur.de/media/archive/9014.pdf"
+BNETZA_A="http://www.bundesnetzagentur.de/media/archive/9014.pdf"
 
 
 dd () {
