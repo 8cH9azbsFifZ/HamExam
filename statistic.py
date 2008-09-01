@@ -13,7 +13,7 @@ def toprettyxml_fixed (node): #, encoding='utf-8'):
    return tmpStream.getvalue()
 
 class Statistic:
-   def IncreaseCounter(self, qid, how, answer):
+   def IncreaseCounter(self, qid, how, answer, time):
       nq = self.FindQuestion (qid)
       if nq >= 0:
          for q in  self.root.getElementsByTagName("question"):
@@ -66,7 +66,7 @@ class Statistic:
 
       t = self.Timestamp()
       a = [1,2,4,8][(["a","b","c","d"]).index(answer)]
-      nt = 15000 # FIXME
+      nt = time*1000.
    
       qq = self.stat.createElement("answer_clicked")
       qq.setAttribute ("datetime", str(t))

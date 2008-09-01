@@ -1,5 +1,6 @@
 import questions, statistic
 import random as r
+import time
 
 class Framework:
    def AskQuestion(self):
@@ -24,6 +25,8 @@ class Framework:
       self.hint = self.q.hint
       self.correct, self.wrong, self.correct_successive, self.wrong_successive = self.s.ThisQuestion (self.id)
 
+      self.time0 = time.time()
+
    def EvalQuestion(self, answer):
       if self.q.correct == answer:
          c = True
@@ -33,7 +36,10 @@ class Framework:
       print "Answer was:",answer
       print "Correct was:",self.q.correct
 
-      self.s.IncreaseCounter (self.id, c, self.q.RealAnswer(answer))
+      self.time1 = time.time()
+      dt = int (self.time1-self.time0)      
+
+      self.s.IncreaseCounter (self.id, c, self.q.RealAnswer(answer), dt)
 
       return c
 
