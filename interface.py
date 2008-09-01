@@ -177,6 +177,9 @@ class MyHandler(BaseHTTPRequestHandler):
       self.DisplayQuestion()
       self.wfile.write("<div class=correctanswer>"+f.answercorrect.encode("utf8")+"</div>")
       
+      self.wfile.write("<div class=hint>")
+      self.wfile.write("<a href="+base+f.hint_dir+f.hint+" target=hint>Hinweis</a></div>")
+      
 
    def StartDisplay(self):
       self.wfile.write("<frameset border=0 frameborder=0 framespacing=0 marginwidth=0 rows=30px,*>")

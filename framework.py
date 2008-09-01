@@ -30,6 +30,9 @@ class Framework:
       else:
          c = False
 
+      print "Answer was:",answer
+      print "Correct was:",self.q.correct
+
       self.s.IncreaseCounter (self.id, c, self.q.RealAnswer(answer))
 
       return c
