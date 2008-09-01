@@ -157,7 +157,7 @@ class Statistic:
          w=str(0)
          cs=str(0)
          ws=str(0)
-      return [c,w,cs,ws]
+      return [str(c),str(w),str(cs),str(ws)]
 
    def Timestamp(self):
       return str(datetime.datetime.today().isoformat()).split(".")[0]
