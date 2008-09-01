@@ -136,7 +136,7 @@ class Questions:
          self.correct = ["a","b","c","d"][s.index(3)]
          self.answercorrect = self.answerd
 
-     self.hint = q[3]
+      self.hint = q[3]
 
    def RealAnswer(self,answer):
       s=self.series

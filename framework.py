@@ -11,7 +11,7 @@ class Framework:
          print "Good questions"
          qid = self.FindGoodQuestion()
       elif self.method == "NewQuestions":
-         print "New qurstion"
+         print "New question"
          qid = self.FindNewQuestion()
       else:
          qid = self.FindAnyQuestion()
