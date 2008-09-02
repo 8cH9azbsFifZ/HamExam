@@ -3,18 +3,26 @@ import random as r
 import time
 
 class Framework:
+   loud = True
+
    def AskQuestion(self):
       if self.method == "BadQuestions":
-         print "Bad question"
+         if self.loud:
+            print "Bad question"
          qid = self.FindBadQuestion()
       elif self.method == "GoodQuestions":
-         print "Good questions"
+         if self.loud:
+            print "Good questions"
          qid = self.FindGoodQuestion()
       elif self.method == "NewQuestions":
-         print "New question"
+         if self.loud:
+            print "New question"
          qid = self.FindNewQuestion()
       else:
          qid = self.FindAnyQuestion()
+
+      if self.loud:
+         print "Question id:",qid         
 
       self.q.AskQuestion (qid)
       self.id = qid
@@ -35,8 +43,9 @@ class Framework:
       else:
          c = False
 
-      print "Answer was:",answer
-      print "Correct was:",self.q.correct
+      if self.loud:
+         print "Answer was:",answer
+         print "Correct was:",self.q.correct
 
       self.time1 = time.time()
       dt = self.time1-self.time0
@@ -64,13 +73,15 @@ class Framework:
       self.s.WriteFile()
 
    def CategorizeQuestions(self):
-      print "Categorize questions"
+      if self.loud:
+         print "Categorize questions"
       for q in self.q.questions:
          if not (q[0] in self.s.goodquestion):
             if not (q[0] in self.s.badquestion):
                if not (q[0] in self.s.newquestion):
                   self.s.newquestion.append (q[0])
-      print "total, good, bad, new:",len(self.q.questions),len(self.s.goodquestion),len(self.s.badquestion),len(self.s.newquestion)
+      if self.loud:                  
+         print "total, good, bad, new:",len(self.q.questions),len(self.s.goodquestion),len(self.s.badquestion),len(self.s.newquestion)
 
    def __init__(self,method="BadQuestions",catalog="TechnikA"):
       if catalog == "TechnikA":
