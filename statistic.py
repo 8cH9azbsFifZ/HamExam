@@ -45,11 +45,11 @@ class Statistic:
       if how == True:
          c += 1
          cs += 1
-         ws = 0
+         ws -= 1
       else:
          w += 1
          ws += 1
-         cs = 0
+         cs -= 1
      
       # in-memory statistics
       self.statistics[nq][1] = c
