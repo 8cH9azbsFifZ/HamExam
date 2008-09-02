@@ -74,8 +74,16 @@ class Statistic:
       qq.setAttribute ("needed_time", str(nt))
       q.appendChild(qq)
 
-      # FIXME: UPDATE QUESTION PRIORITIES
-      
+      if float(ws) > 0.:
+         rr = 0.
+      else:
+         rr = float(cs)*norm
+
+      if rr >= self.ratio:
+         self.goodquestion.append (qid)
+      elif rr >= 0:
+         self.badquestion.append (qid)
+
    def WriteFile(self):
       print "Writing statistics file",self.filename
       ss=toprettyxml_fixed(self.root)
@@ -121,7 +129,7 @@ class Statistic:
             self.goodquestion.append (id)
          elif rr >= 0:
             self.badquestion.append (id)
-         else: # never reache # never reachedd
+         else: # never reached
             self.newquestion.append (id)
 
          answers = []

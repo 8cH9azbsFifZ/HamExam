@@ -10,14 +10,17 @@ class Framework:
          if self.loud:
             print "Bad question"
          qid = self.FindBadQuestion()
+         self.q.badquestion.pop (self.q.badquestion.index (qid))
       elif self.method == "GoodQuestions":
          if self.loud:
             print "Good questions"
          qid = self.FindGoodQuestion()
+         self.q.goodquestion.pop (self.q.goodquestion.index (qid))
       elif self.method == "NewQuestions":
          if self.loud:
             print "New question"
          qid = self.FindNewQuestion()
+         self.q.newquestion.pop (self.q.newquestion.index (qid))
       else:
          qid = self.FindAnyQuestion()
 
