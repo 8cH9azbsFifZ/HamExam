@@ -48,11 +48,11 @@ class Statistic:
       if how == True:
          c += 1
          cs += 1
-         ws -= 1
+         ws = max(ws-1,0)
       else:
          w += 1
          ws += 1
-         cs -= 1
+         cs = min(cs-1,0)
      
       # in-memory statistics
       self.statistics[nq][1] = c
@@ -80,7 +80,7 @@ class Statistic:
       if float(ws) > 0.:
          rr = 0.
       else:
-         rr = float(cs)*norm
+         rr = float(cs)*self.norm
 
       return rr >= self.ratio
 
@@ -111,7 +111,7 @@ class Statistic:
       self.newquestion = []
       self.goodquestion = []
       self.badquestion = []
-      norm = 1./self.mincorrect
+      self.norm = 1./self.mincorrect
 
       for q in self.root.getElementsByTagName("question"):
          id = q.getAttribute ("id")
@@ -123,7 +123,7 @@ class Statistic:
          if float(ws) > 0.:
             rr = 0.
          else:
-            rr = float(cs)*norm
+            rr = float(cs)*self.norm
 
          if rr >= self.ratio:
             self.goodquestion.append (id)
