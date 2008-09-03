@@ -152,6 +152,7 @@ class MyHandler(BaseHTTPRequestHandler):
          self.wfile.write ("} else if (key == 66) {  window.location = \""+base+"/b.afu\";")
          self.wfile.write ("} else if (key == 67) {  window.location = \""+base+"/c.afu\";")
          self.wfile.write ("} else if (key == 68) {  window.location = \""+base+"/d.afu\";")
+         self.wfile.write ("} else if (key == 78 || key == 83) {  window.location = \""+base+"/askquestion.afu\";")
          self.wfile.write ("}")
          self.wfile.write ("}")
          self.wfile.write ("document.onkeydown = eval_key;")
