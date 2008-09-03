@@ -14,6 +14,9 @@ def toprettyxml_fixed (node): #, encoding='utf-8'):
 
 class Statistic:
    def IncreaseCounter(self, qid, how, answer, time):
+      """
+      Return True, is question is good
+      """
       nq = self.FindQuestion (qid)
       if nq >= 0:
          for q in  self.root.getElementsByTagName("question"):
@@ -79,10 +82,7 @@ class Statistic:
       else:
          rr = float(cs)*norm
 
-      if rr >= self.ratio:
-         self.goodquestion.append (qid)
-      elif rr >= 0:
-         self.badquestion.append (qid)
+      return rr >= self.ratio
 
    def WriteFile(self):
       print "Writing statistics file",self.filename

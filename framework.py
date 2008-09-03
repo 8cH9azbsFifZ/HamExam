@@ -10,17 +10,17 @@ class Framework:
          if self.loud:
             print "Bad question"
          qid = self.FindBadQuestion()
-         self.q.badquestion.pop (self.q.badquestion.index (qid))
+         self.s.badquestion.pop (self.s.badquestion.index (qid))
       elif self.method == "GoodQuestions":
          if self.loud:
             print "Good questions"
          qid = self.FindGoodQuestion()
-         self.q.goodquestion.pop (self.q.goodquestion.index (qid))
+         self.s.goodquestion.pop (self.s.goodquestion.index (qid))
       elif self.method == "NewQuestions":
          if self.loud:
             print "New question"
          qid = self.FindNewQuestion()
-         self.q.newquestion.pop (self.q.newquestion.index (qid))
+         self.s.newquestion.pop (self.s.newquestion.index (qid))
       else:
          qid = self.FindAnyQuestion()
 
@@ -53,7 +53,11 @@ class Framework:
       self.time1 = time.time()
       dt = self.time1-self.time0
 
-      self.s.IncreaseCounter (self.id, c, self.q.RealAnswer(answer), dt)
+      tt = self.s.IncreaseCounter (self.id, c, self.q.RealAnswer(answer), dt)
+      if tt == True:
+         self.s.goodquestion.append(self.id)
+      else:
+         self.s.badquestion.append(self.id)
 
       return c
 
