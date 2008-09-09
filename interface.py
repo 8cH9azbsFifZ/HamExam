@@ -173,7 +173,7 @@ class MyHandler(BaseHTTPRequestHandler):
       self.wfile.write("<div class=statistics>Richtig: "+f.correct_successive+"("+f.correct+")"+" <br>Falsch: "+f.wrong_successive+"("+f.wrong+")"+"</div>")
 
    def WrongAnswer(self):
-      self.ShowHead()
+      self.ShowHead(question=True)
       self.wfile.write("<div class=wronganswer>Falsche Antwort</div>")
       self.DisplayQuestion()
       self.wfile.write("<div class=correctanswer>"+f.answercorrect.encode("utf8")+"</div>")
