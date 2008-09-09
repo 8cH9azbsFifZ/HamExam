@@ -53,6 +53,15 @@ class Statistic:
          w += 1
          ws += 1
          cs = min(cs-1,0)
+
+      if c < 0:
+         c = 0
+      if cs < 0:
+         cs = 0
+      if w < 0:
+         w = 0
+      if ws < 0:
+         ws = 0
      
       # in-memory statistics
       self.statistics[nq][1] = c
