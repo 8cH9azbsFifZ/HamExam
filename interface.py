@@ -121,6 +121,12 @@ class MyHandler(BaseHTTPRequestHandler):
       self.ShowHead()
       self.wfile.write ("<h2>Statistics...</h2>")
 
+      self.wfile.write ("<ul><li>Questions: "+len(f.q.questions))
+      self.wfile.write ("<li>Good: "+len(f.s.goodquestion))
+      self.wfile.write ("<li>Bad: "+len(f.s.badquestion))
+      self.wfile.write ("<li>New: "+len(f.s.newquestion))
+      self.wfile.write ("</ul>")
+
    def DisplayMethod(self):
       self.ShowHead()
       self.wfile.write ("<h2>Abfragemethode</h2>")
