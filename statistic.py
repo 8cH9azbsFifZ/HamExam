@@ -154,6 +154,12 @@ class Statistic:
    def GetPriority(self,qid):
       return
 
+   def MakeStatistics(self):
+      ntotal = len(self.goodquestion) + len(self.newquestion) + len(self.badquestion) + len(self.goodquestion)
+      rcorrect = float(len(self.goodquestion))/ntotal
+      rnew = float(len(self.newquestion))/ntotal
+      return [rnew, rcorrect]
+
    def FindQuestion(self,qid):
       i = 0
       for s in self.statistics:
