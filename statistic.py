@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import sys, string
 from xml.dom import minidom, Node
+# should really be done with  http://effbot.org/zone/element.htm
 import os
 import datetime
 
