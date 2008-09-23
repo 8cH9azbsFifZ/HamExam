@@ -1,0 +1,5 @@
+What is left to be done:
+========================
+- Make an installer for making the program useable for non-hackers ;)
+- Replace the xml support in the statistics with a one with a smaller footprint
+- Do some statistical evaluations
